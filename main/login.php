@@ -7,6 +7,50 @@
   <!-- <link href="../css/background.css" rel="stylesheet" /> -->
   <link href="../css/login.css" rel="stylesheet" />
   <link href="../images/icon1.png" rel="icon" />
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+      import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+      console.log('running');
+        
+      const firebaseConfig = {
+        apiKey: "AIzaSyCZV35Sd2Qo14fz3XORPncs7TudDTVRFLk",
+        authDomain: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
+        databaseURL: "https://airqualitymonitoringsyst-87ae7-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "airqualitymonitoringsyst-87ae7",
+        storageBucket: "airqualitymonitoringsyst-87ae7.appspot.com",
+        messagingSenderId: "451013569860",
+        appId: "1:451013569860:web:bf8e9bc4946c3b13f3bb11",
+        measurementId: "G-NBW598T1DB"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      const dbRef = ref(getDatabase());
+
+      btnlogin.addEventListener('click', (e) => {
+        var uname = document.getElementById("uname").value;
+        var pwd = document.getElementById("password").value;
+
+        get(child(dbRef, uname + "/Password")).then((snapshot) => {
+          if (snapshot.exists()) {
+            if (snapshot.val() == pwd){
+              localStorage.setItem("username", uname);
+              window.location.href = "home.php";
+            }
+            else{
+              alert("Invalid Password");
+            }
+          } else {
+            alert("Invalid Username");
+          }
+        }).catch((error) => {
+          alert(error);
+        });
+      });
+    </script>
 </head>
 
 <body style="background-color:white;">
@@ -34,8 +78,8 @@
             </div>
             <!-- input fields -->
             <div class="mt-0">
-              <button class="formBtn loginBtn" style="width:180px;height:50px;" onclick="login();">LOGIN</button>
-              <button class="formBtn adminBtn" style="width:180px;height:50px;">ADMIN</button>
+              <button class="formBtn loginBtn" style="width:180px;height:50px;" onclick="login();" id="btnlogin">LOGIN</button>
+              <button class="formBtn adminBtn" style="width:180px;height:50px;">SIGN UP</button>
             </div>
           </div>
           <!-- form -->

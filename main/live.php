@@ -29,6 +29,8 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
     <!-- for gauges -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="../js/mqttConnection.js" type="text/JavaScript"><script>
 </head>
 
 <body>
@@ -47,7 +49,7 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                         <i class="fa fa-bluetooth-b"></i><span>Device</span>
                     </div>
                     <div class="switch-toggle">
-                        <input type="checkbox" id="bluetooth">
+                        <input type="checkbox" id="bluetooth" onchange="EnableLiveServer(this)">
                         <label for="bluetooth"></label>
                     </div>
                 </div>
@@ -92,8 +94,8 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                                 <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
                                     <span class="paraName paraPres">PRESSURE</span>
                                     <div style="border-radius:5px;color:black;margin-top:100px;">
-                                        <span class="paraValue" style="font-size:60px;">1000.7</span>
-                                        <span class="paraUnit">hgcm</span>
+                                        <span class="paraValue" style="font-size:60px;" id="pressure">1000.7</span>
+                                        <span class="paraUnit">Pa</span>
                                     </div>
                                     <div class="text-start ps-3" style="margin-top:130px;">
                                         <!-- <span class="badge rounded-pill text-bg-dark" style="width:100px;">MAX VALUE :</span>
@@ -110,8 +112,8 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <span class="paraName paraPres">TVOC Level</span>
 
                                     <div style="border-radius:5px;color:black;margin-top:100px;">
-                                        <span class="paraValue">1.5</span>
-                                        <span class="paraUnit">ppm</span>
+                                        <span class="paraValue" id="tvoc">1.5</span>
+                                        <span class="paraUnit">ppb</span>
                                     </div>
                                     <div class="text-start ps-3" style="margin-top:100px;">
                                         <!-- <span class="badge rounded-pill text-bg-dark" style="width:100px;">MAX VALUE :</span>
@@ -128,7 +130,7 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <span class="paraName paraPres">CO2 Level</span>
 
                                     <div style="border-radius:5px;color:black;margin-top:100px;">
-                                        <span class="paraValue">450</span>
+                                        <span class="paraValue" id="co2">450</span>
                                         <span class="paraUnit">ppm</span>
                                     </div>
                                     <div class="text-start ps-3" style="margin-top:100px;">

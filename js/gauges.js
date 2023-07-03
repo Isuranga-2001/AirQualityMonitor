@@ -96,15 +96,14 @@ var gaugeHum = new RadialGauge({
   animationRule: "linear"
 }).draw();
 
+var temp = 12;
+var hum = 0;
+
 // Function to get current readings on the webpage when it loads for the first time
 function getReadings(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      var myObj = JSON.parse(this.responseText);
-      console.log(myObj);
-      var temp = myObj.temperature;
-      var hum = myObj.humidity;
       gaugeTemp.value = temp;
       gaugeHum.value = hum;
     }
@@ -134,7 +133,7 @@ if (!!window.EventSource) {
     console.log("new_readings", e.data);
     var myObj = JSON.parse(e.data);
     console.log(myObj);
-    gaugeTemp.value = myObj.temperature;
-    gaugeHum.value = myObj.humidity;
+    gaugeTemp.value = temp;
+    gaugeHum.value = hum;
   }, false);
 }
