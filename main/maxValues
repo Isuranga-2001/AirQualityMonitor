@@ -1,0 +1,8 @@
+temperature:0-125(degCelcius);
+pressure:300-1100(hPa)
+RH:20-80(ACCURATE)
+ error-rate->x=(y-80)/5
+TVOC Level:0.3-3(ppm)
+CO2:400-1000(ppm)
+
+   

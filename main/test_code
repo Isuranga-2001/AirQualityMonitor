@@ -1,0 +1,37 @@
+// The string of dates
+const dateString = "2023/01/01 00:00:56,2022/12/31 23:50:30,2022/12/31 23:7:20,2022/12/3 05:3:4,2023/2/3 12:20:30";
+
+// Split the string into an array of dates
+const dates = dateString.split(',');
+
+// Convert the dates to Date objects
+const dateObjects = dates.map(date => new Date(date));
+
+// Get the current time
+const currentTime = new Date();
+
+// Calculate the time one hour back
+const timeOneHourBack = new Date(currentTime.getTime() - (60 * 60 * 1000));
+
+// Filter the dates between current time and one hour back, including the current time
+const filteredDates = dateObjects.filter(date => date >= timeOneHourBack && date <= currentTime);
+
+// Sort the filtered dates in ascending order
+filteredDates.sort((a, b) => a - b);
+
+// Format the filtered dates as strings in "YYYY-MM-DD HH:mm:ss" format
+const formattedDates = filteredDates.map(date => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+});
+
+// Convert the formatted dates back to a string
+const formattedDateString = formattedDates.join(',');
+
+// Display the formatted dates
+console.log(formattedDateString);

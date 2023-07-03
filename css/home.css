@@ -1,0 +1,455 @@
+@font-face {
+  font-family: "quicksand";
+  src: url("../fonts/quicksand.ttf");
+}
+/* *{
+  color:rgb(52, 248, 176);
+} */
+/* scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px transparent;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c8c8c8;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cecece;
+}
+/* scrollbar */
+
+body {
+  /* background-image: url(../images/background2.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; */
+  background-color:white;
+  font-family: "quicksand";
+}
+
+.currentPg {
+  border-left: solid 5px #fed215;
+  border-right: solid 5px #fed215;
+}
+
+.navBtn {
+  margin-top: 20px;
+  font-family: quicksand;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  padding: 0.9em 1.5em;
+  display: flex;
+  font-weight: bolder;
+  width: 200px;
+  align-items: center;
+  justify-content: left;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: #3a2d78;
+  transition: all 0.3s;
+}
+
+.navBtn:hover {
+  transform: translateY(-3px);
+  border-left: solid 5px #fed215;
+  border-right: solid 5px #fed215;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navBtn:active {
+  transform: scale(0.95);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navBtn span {
+  display: block;
+  margin-left: 0.4em;
+}
+
+/* userSection */
+
+.userSection {
+  border-radius: 10px;
+  background-color: white;
+  height: auto;
+  width: 100%;
+}
+
+.avatar {
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  transition:0.6s;
+}
+
+/* userSection */
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  width: 250px;
+  height: 200px;
+  cursor: pointer;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+/* .flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+} */
+
+/* Position the front and back side */
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #ffffff;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  font-family: quicksand;
+  font-weight: bolder;
+  color: black;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-card-front:hover{
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  scale:1.05;
+  transition: all 0.3s ease 0s;
+}
+
+.cta {
+  border: none;
+  background: none;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+  font-family: quicksand;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  font-weight: bolder;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.cardBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 50px;
+  border-radius: 50px;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  background: #fed215;
+  font-weight: bolder;
+  color: #3a2d78;
+}
+
+svg {
+  margin: 0 0 0 10px;
+}
+
+.cardBtn:hover svg {
+  margin: 0 0 0 25px;
+  transition: 0.3s;
+}
+
+.cardBtn:not(:hover) svg {
+  transition: 0.3s;
+}
+
+.cardBtn:active {
+  transform: scale(0.9, 0.9);
+  transition: 200ms;
+}
+
+.cardBtn:not(:active) {
+  transition: 200ms;
+}
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0); /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+  position: relative;
+  top: 25%; /* 25% from the top */
+  width: 100%; /* 100% width */
+  text-align: center; /* Centered text/links */
+  margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block; /* Display block instead of inline */
+  transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover,
+.overlay a:focus {
+  color: #fed215;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  background-color: transparent;
+  opacity: 0;
+  border-radius: 100%;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+  .overlay a {
+    font-size: 20px;
+  }
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.myNav {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  height: auto;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0px 15px 20px rgba(58, 45, 120, 0.56);
+}
+
+.myNav button {
+  margin: 15px;
+  width: 200px;
+  height: 50px;
+  font-family: quicksand;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.myNav button a{
+  text-decoration: none;
+}
+
+.myNav button:hover {
+  background-color: #fed215;
+  font-weight: bolder;
+}
+
+/* switch */
+.switch-holder {
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.7),
+    10px 10px 10px rgba(0, 0, 0, 0.2);
+  border:1px solid black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch-label {
+  padding: 0 20px 0 10px;
+}
+
+.switch-label i {
+  margin-right: 5px;
+}
+
+.switch-toggle {
+  height: 40px;
+}
+
+.switch-toggle input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -2;
+}
+
+.switch-toggle input[type="checkbox"] + label {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  margin: 0;
+  cursor: pointer;
+  box-shadow: inset -8px -8px 15px rgba(255, 255, 255, 0.6),
+    inset 10px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.switch-toggle input[type="checkbox"] + label::before {
+  position: absolute;
+  content: "OFF";
+  font-size: 13px;
+  text-align: center;
+  line-height: 25px;
+  top: 8px;
+  left: 8px;
+  width: 45px;
+  height: 25px;
+  border-radius: 20px;
+  background-color: #eeeeee;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.5),
+    3px 3px 5px rgba(0, 0, 0, 0.25);
+  transition: 0.3s ease-in-out;
+}
+
+.switch-toggle input[type="checkbox"]:checked + label::before {
+  left: 50%;
+  content: "ON";
+  color: #fff;
+  background-color: #00b33c;
+  box-shadow: -3px -3px 5px rgba(255, 255, 255, 0.5), 3px 3px 5px #00b33c;
+}
+/* switch */
+
+.paraAwards{
+  width:100%;
+}
+
+/* button */
+.profileBtn {
+  margin-top: 40px;
+  padding: 1.3em 3em;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.profileBtn:hover {
+  background-color: #fed215;
+  box-shadow: 0px 15px 20px rgba(170, 148, 77, 0.568);
+  color: #000000;
+  transform: translateY(-7px);
+}
+.logout_btn:hover {
+  box-shadow: 0px 15px 20px rgba(170, 77, 77, 0.568);
+  color: #000000;
+  transform: translateY(-7px);
+}
+
+.logoutBtn:active {
+  transform: translateY(-1px);
+}
+
+.adminBtn:hover {
+  background-color: rgb(254, 210, 21);
+  box-shadow: 0px 15px 20px rgba(254, 210, 21, 0.56);
+  color: #000000;
+  transform: translateY(-7px);
+}
+
+.adminBtn:active {
+  transform: translateY(-1px);
+}
+/* button */
