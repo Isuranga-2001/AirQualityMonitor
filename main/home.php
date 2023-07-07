@@ -52,25 +52,53 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
             var uname = localStorage.getItem("username");
             document.getElementById("uname").innerHTML = uname;
 
-            var deviceArray = [];
+            let deviceArray = [];
+            let count = 0;
 
             get(child(dbRef, uname + "/Device")).then((snapshot) => {
-            if (snapshot.exists()) {
-                snapshot.forEach(function(value) {
-                    deviceArray.push(value.key);
-                });
-            } else {
-                alert("Invalid Username");
-            }
+                if (snapshot.exists()) {
+                    snapshot.forEach(function(value) {
+                        var deviceID = String(value.key);
+                        deviceArray.push(deviceID);
+
+                        get(child(dbRef, uname + "/Device/" + deviceID + "/Name")).then((snapshot1) => {
+                            if (snapshot1.exists()) {  
+                                AddCard(count);
+                                
+                                // device name
+                                document.getElementById("DName_" + count).innerHTML = String(snapshot1.val());
+                                
+                                // device id
+                                document.getElementById("DID_" + count).innerHTML = deviceArray[count];
+                                count++;
+                            }
+                        }).catch((error) => {
+                            alert(error);
+                        });
+
+                        
+                    });
+                }
             }).catch((error) => {
                 alert(error);
             });
+
+           
         });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+
+        function AddCard(num){
+            // <span class="badge text-bg-danger">Inactive</span> for inactive
+            document.getElementById("cardHolder").innerHTML += `
+            <div class='flip-card mx-auto' style='cursor:pointer;' onclick='gotoLive(007, 0004)'>
+                <div class='flip-card-inner'>
+                    <div class='flip-card-front'>
+                    <span class='badge text-bg-success'>Active</span>
+                    <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'><span></h5>
+                    <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br><span id='DID_` + num + `'><span></h5>
+                    </div>
+                </div>
+            </div>`;
+        }
     </script>
     <script src="../loaders/fnon.min.js"></script>
     <script src="../js/load.js"></script>
@@ -265,41 +293,8 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                         </div>
                         
                         <!-- user_room_details -->
-                        <div class="row row-cols-1 row-cols-md-2 g-4 p-3 text-center mt-0 overflow-y-auto p-4" style="height:90vh;">
-                            <?php
-                            $rooms = array();
-                            for ($j = 0; $j < 3; $j++) {
-                                $room = new stdClass();
-                                $room->room_name = "device" . ($j + 1);
-                                $room->room_id = "000" . ($j + 1);
-                                $rooms[$j] = $room;
-                            }
-                            for ($i = 0; $i < 3; $i++) {
-                            ?>
-                                <!-- card -->
-                                <div class="flip-card mx-auto" style="cursor:pointer;" onclick="gotoLive(007, 0004)">
-                                    <div class="flip-card-inner">
-                                        <div class="flip-card-front">
-                                            <?php
-                                            if ($i % 2 == 0) {
-                                            ?>
-                                                <span class="badge text-bg-danger">Inactive</span>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <span class="badge text-bg-success">Active</span>
-                                            <?php
-                                            }
-                                            ?>
-                                            <h5 style="margin-top:40px;" class="text-center"><?php echo $rooms[$i]->room_name; ?></h5>
-                                            <h5 style="margin-top:40px;" class="text-center">DEVICE ID : <?php echo $rooms[$i]->room_id; ?></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- card -->
-                            <?php
-                            }
-                            ?>
+                        <div class="row row-cols-1 row-cols-md-2 g-4 p-3 text-center mt-0 overflow-y-auto p-4" style="height:90vh;" id="cardHolder">
+                            
                         </div>
                         <!-- user_room_details -->
                     </div>
