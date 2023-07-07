@@ -59,24 +59,20 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                 if (snapshot.exists()) {
                     snapshot.forEach(function(value) {
                         var deviceID = String(value.key);
-                        deviceArray.push(deviceID);
+                        AddCard(deviceID);
+                        document.getElementById("DID_" + deviceID).innerHTML = deviceID;
+                        deviceArray.push(count);
 
                         get(child(dbRef, uname + "/Device/" + deviceID + "/Name")).then((snapshot1) => {
-                            if (snapshot1.exists()) {  
-                                AddCard(count);
-                                
+                            if (snapshot1.exists()) {
                                 // device name
-                                document.getElementById("DName_" + count).innerHTML = String(snapshot1.val());
-                                
-                                // device id
-                                document.getElementById("DID_" + count).innerHTML = deviceArray[count];
-                                count++;
+                                document.getElementById("DName_" + deviceID).innerHTML = String(snapshot1.val());
                             }
                         }).catch((error) => {
                             alert(error);
                         });
 
-                        
+                        count++;
                     });
                 }
             }).catch((error) => {
@@ -93,7 +89,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                 <div class='flip-card-inner'>
                     <div class='flip-card-front'>
                     <span class='badge text-bg-success'>Active</span>
-                    <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'><span></h5>
+                    <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'>Unknown<span></h5>
                     <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br><span id='DID_` + num + `'><span></h5>
                     </div>
                 </div>
