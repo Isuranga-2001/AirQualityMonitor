@@ -7,7 +7,7 @@ $live = "";
 $ethernet = "";
 $noOfRooms = 12;
 $noOfParameters = 5;
-$pagesLocations = array("../main/live.php,../main/dashboard.php,../main/history.php,../main/home.php,../main/login.php");
+$pagesLocations = array("../php/live.php,../php/dashboard.php,../php/history.php,../php/home.php,../php/login.php");
 
 $home = "style='background-color:#fed215;font-weight:bolder;'";
 
@@ -34,7 +34,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
             
         const firebaseConfig = {
             apiKey: "AIzaSyCZV35Sd2Qo14fz3XORPncs7TudDTVRFLk",
-            authDomain: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
+            authDophp: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
             databaseURL: "https://airqualitymonitoringsyst-87ae7-default-rtdb.asia-southeast1.firebasedatabase.app",
             projectId: "airqualitymonitoringsyst-87ae7",
             storageBucket: "airqualitymonitoringsyst-87ae7.appspot.com",
@@ -85,7 +85,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
         function AddCard(num){
             // <span class="badge text-bg-danger">Inactive</span> for inactive
             document.getElementById("cardHolder").innerHTML += `
-            <div class='flip-card mx-auto' style='cursor:pointer;' onclick='gotoLive(007, 0004)'>
+            <div class='flip-card mx-auto' style='cursor:pointer;' onclick='gotoDashboard()'>
                 <div class='flip-card-inner'>
                     <div class='flip-card-front'>
                     <span class='badge text-bg-success'>Active</span>

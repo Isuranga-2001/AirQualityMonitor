@@ -121,59 +121,20 @@ function drawLogScales() {
 // history
 
 // locate pages
-function gotoDashboard(userId, roomId) {
-  Fnon.Wait.Gears();
-  window.location.assign("../main/dashboard.php");
-  var r = new XMLHttpRequest();
-  r.onreadystatechange = function () {
-    if (r.readyState == 4) {
-      Fnon.Wait.Remove();
-    }
-  };
-  r.open("GET", url, true);
+function gotoDashboard() {
+  window.location.assign("../php/dashboard.php");
 }
 
-// function gotoDashboard(){
-//   window.location.assign("../main/dashboard.php");
-// }
-
 function gotoHome() {
-  window.location.assign("../main/home.php");
+  window.location.assign("../php/home.php");
 }
 
 function gotoSettings() {
-  window.location.assign("../main/settings.php");
+  window.location.assign("../php/settings.php");
 }
 
-function gotoLive(userId, roomId) {
-  window.location.assign("../main/live.php");
-}
-
-function gotoEthernet() {
-  Fnon.Wait.Gears();
-  var ipAddress = "192.168.6.1";
-  var url = "http://" + ipAddress;
-  window.location.href = url;
-  //Fnon.Wait.ColorBar()
-  //Fnon.Wait.ProgressBar()
-  //Fnon.Wait.CurveBar()
-  //Fnon.Wait.LineDots()
-  //Fnon.Wait.Circle()
-  //Fnon.Wait.CircleDots()
-  //Fnon.Wait.Bricks()
-  //Fnon.Wait.Interwind()
-  //Fnon.Wait.Typing()
-  //Fnon.Wait.Gear()
-  //Fnon.Wait.Gears()
-  //Fnon.Wait.Rainbow()
-  //Fnon.Wait.CurveBar()
-  var r = new XMLHttpRequest();
-  r.onreadystatechange = function () {
-    if (r.readyState == 4) {
-      Fnon.Wait.Remove();
-    }
-  };
-  r.open("GET", url, true);
+function gotoLive() {
+  window.location.assign("../php/live.php");
 }
 // locate pages
 

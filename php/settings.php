@@ -8,7 +8,7 @@ $live = "";
 $ethernet = "";
 $noOfRooms = 12;
 $noOfParameters = 5;
-$pagesLocations = array("../main/live.php,../main/dashboard.php,../main/history.php,../main/home.php,../main/login.php");
+$pagesLocations = array("../php/live.php,../php/dashboard.php,../php/history.php,../php/home.php,../php/login.php");
 
 $settings =  "style='background-color:#fed215;font-weight:bolder;'";
 
