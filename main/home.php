@@ -27,6 +27,46 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
     <link rel="stylesheet" href="../loaders/fnon.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+            
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZV35Sd2Qo14fz3XORPncs7TudDTVRFLk",
+            authDomain: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
+            databaseURL: "https://airqualitymonitoringsyst-87ae7-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "airqualitymonitoringsyst-87ae7",
+            storageBucket: "airqualitymonitoringsyst-87ae7.appspot.com",
+            messagingSenderId: "451013569860",
+            appId: "1:451013569860:web:bf8e9bc4946c3b13f3bb11",
+            measurementId: "G-NBW598T1DB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        const dbRef = ref(getDatabase());
+
+        window.addEventListener('DOMContentLoaded', (e) => { 
+            var uname = localStorage.getItem("username");
+            document.getElementById("uname").innerHTML = uname;
+
+            var deviceArray = [];
+
+            get(child(dbRef, uname + "/Device")).then((snapshot) => {
+            if (snapshot.exists()) {
+                snapshot.forEach(function(value) {
+                    deviceArray.push(value.key);
+                });
+            } else {
+                alert("Invalid Username");
+            }
+            }).catch((error) => {
+                alert(error);
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip();
@@ -36,7 +76,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
     <script src="../js/load.js"></script>
 </head>
 
-<body style="overflow-y:visible;background-color:white;">
+<body style="overflow-y:visible;background-color:white;" id="homepage">
     <!-- The overlay -->
     <div id="myNav" class="overlay">
         <!-- Button to close the overlay navigation -->
@@ -87,12 +127,6 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                 <!-- profile_details -->
                 <div class="col-12 profile text-center p-5 text-light" style="margin-top:-150px;">
                     <img src="../images/icon2.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;" onclick="closeNav()">
-                    <br /><br />
-                    <h4>USERID</h4>
-                    <h5>U_001</h5>
-                    <br />
-                    <h4>USERNAME</h4>
-                    <h5>USER 001</h5>
                 </div>
                 <div class="col-12 btnGrp my-5 mb-lg-5 mt-lg-0" style="margin-top:-100px;">
                     <button class="profileBtn" <?php echo $settings; ?> onclick="gotoSettings()">
@@ -133,8 +167,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 <div class="col-6 col-lg-12 profile text-center p-5">
                                     <img src="../images/icon2.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;">
                                     <br /><br />
-                                    <h4>USERNAME</h4>
-                                    <h5>USER 001</h5>
+                                    <h4 id="uname">USERNAME</h4>
                                 </div>
                                 <div class="col-6 col-lg-12 btnGrp my-5 mb-lg-5 mt-lg-0 text-center">
                                     <button class="profileBtn" <?php echo $settings; ?> onclick="gotoSettings()">
@@ -230,17 +263,18 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 <!-- small devices -->
                             </div>
                         </div>
+                        
                         <!-- user_room_details -->
                         <div class="row row-cols-1 row-cols-md-2 g-4 p-3 text-center mt-0 overflow-y-auto p-4" style="height:90vh;">
                             <?php
                             $rooms = array();
-                            for ($j = 0; $j < 2; $j++) {
+                            for ($j = 0; $j < 3; $j++) {
                                 $room = new stdClass();
                                 $room->room_name = "device" . ($j + 1);
                                 $room->room_id = "000" . ($j + 1);
                                 $rooms[$j] = $room;
                             }
-                            for ($i = 0; $i < 2; $i++) {
+                            for ($i = 0; $i < 3; $i++) {
                             ?>
                                 <!-- card -->
                                 <div class="flip-card mx-auto" style="cursor:pointer;" onclick="gotoLive(007, 0004)">

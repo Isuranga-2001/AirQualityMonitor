@@ -177,6 +177,4 @@ function gotoEthernet() {
 }
 // locate pages
 
-// temperature_gauge
-
-// temperature_gauge
+//

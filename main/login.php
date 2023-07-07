@@ -38,6 +38,7 @@
           if (snapshot.exists()) {
             if (snapshot.val() == pwd){
               localStorage.setItem("username", uname);
+              localStorage.setItem("password", pwd);
               window.location.href = "home.php";
             }
             else{
@@ -50,7 +51,7 @@
           alert(error);
         });
       });
-    </script>
+  </script>
 </head>
 
 <body style="background-color:white;">
