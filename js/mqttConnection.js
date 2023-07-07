@@ -18,11 +18,10 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
   //console.log(message.toString());
   if (topic == "temp"){
-    if (Number(message) < -55){
-      document.getElementById(topic).innerHTML = "0";  
-    }
-
-    //temp = Number(message);
+    UpdateTemperature(message)
+  }
+  else if (topic == "humidity"){
+    UpdateHumidity(message)
   }
   else{
     document.getElementById(topic).innerHTML = message.toString();
