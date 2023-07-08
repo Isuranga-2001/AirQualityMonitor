@@ -85,7 +85,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
         function AddCard(num){
             // <span class="badge text-bg-danger">Inactive</span> for inactive
             document.getElementById("cardHolder").innerHTML += `
-            <div class='flip-card mx-auto' style='cursor:pointer;' onclick='gotoDashboard()'>
+            <div class='flip-card mx-auto' style='cursor:pointer;' onclick='loadDashboard(this)' id='` + num + `'>
                 <div class='flip-card-inner'>
                     <div class='flip-card-front'>
                     <span class='badge text-bg-success'>Active</span>

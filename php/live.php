@@ -31,9 +31,10 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
     <!-- for gauges -->
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="../js/mqttConnection.js" type="text/JavaScript"><script>
+    <script src="../js/script.js" type="text/JavaScript"></script>
 </head>
 
-<body>
+<body onload="pageLoad();">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -153,7 +154,6 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
             </div>
         </div>
     </div>
-    <script src="../js/script.js"></script>
     <script src="../js/gauges.js"></script>
 </body>
 
