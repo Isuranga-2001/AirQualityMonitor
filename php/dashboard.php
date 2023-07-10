@@ -1,6 +1,5 @@
 <?php
 
-
 $dashboard = "";
 $home = "";
 $settings = "";
@@ -53,6 +52,8 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     <div class="text-center p-3">
                         <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
                     </div>
+                    <h1 id="topic">Temperature</h1>
+                    <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
                     <div class="row text-center tempChart p-4">
                         <!-- duration -->
                         <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
@@ -129,9 +130,8 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                 <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
                             </select>
                             <!-- parameter -->
-                        </div>                      
-                        <h1 id="topic">Temperature</h1>
-                        <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
+                        </div>
+
                     </div>
                 </form>
             </div>
