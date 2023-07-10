@@ -58,40 +58,53 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     </div>
                     <h1 id="topic">Temperature</h1>
                     <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
-                    <div class="row" style="margin-top:-100px;">
+                    <div class="row">
                         <!-- parameter_card_wrapper -->
                         <div class="col-12">
                             <!-- parameter_cards -->
+                            <div class="content d-none" style="margin-top:100px;">
+                                <div class="card-grid">
+                                    <div class="card">
+                                        <p class="card-title">Temperature</p>
+                                        <canvas class="mx-auto" id="gauge-temperature"></canvas>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row g-4 p-3 text-center mt-0 overflow-y-auto pb-5">
                                 <div style="display:contents;">
-                                    <!-- temperature,humidity,pressure -->
-                                    <?php
-
-                                    $temperature_rangeColors = array("#FF0000", "#FF9300", "#FBFF00", "#49FF00");
-                                    $humdity_rangeColors = array("#52B1D2", "#73CCD8", "#E8E4E2", "#D0AE8B", "#05192C");
-                                    $pressure_rangeColors = array("#fbe49f", "#e9ecd1", "#d8e1e1", "#b8dedf", "#98fdf5");
-
-                                    ?>
-                                    <!-- temperature,humidity,pressure -->
+                                    <!-- humidity -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">HUMIDIITY</span>
+                                        <div class="card">
+                                            <canvas class="mx-auto" id="gauge-humidity"></canvas>
+                                            <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
+                                        </div>
+                                    </div>
+                                    <!-- humidity -->
+                                    <!-- temperature -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">TEMPERATURE</span>
+                                        <div class="card">
+                                            <canvas class="mx-auto" id="gauge-temp"></canvas>
+                                            <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
+                                        </div>
+                                    </div>
+                                    <!-- temperature -->
                                     <!-- pressure -->
-                                    <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">PRESSURE</span>
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
                                             <span class="paraValue" style="font-size:60px;" id="pressure">1000.7</span>
                                             <span class="paraUnit">Pa</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:130px;">
-                                            <!-- <span class="badge rounded-pill text-bg-dark" style="width:100px;">MAX VALUE :</span>
-                                    <br />
-                                    <span class="badge rounded-pill text-bg-dark" style="width:100px;">MIN VALUE :</span> -->
-                                            <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
                                         </div>
                                     </div>
                                     <!-- pressure -->
                                     <!-- tvoc level -->
-                                    <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TVOC Level</span>
 
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
@@ -99,9 +112,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <span class="paraUnit">ppb</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:100px;">
-                                            <!-- <span class="badge rounded-pill text-bg-dark" style="width:100px;">MAX VALUE :</span>
-                                    <br />
-                                    <span class="badge rounded-pill text-bg-dark" style="width:100px;">MIN VALUE :</span> -->
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -109,7 +119,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     </div>
                                     <!-- tvoc level -->
                                     <!-- co2 level -->
-                                    <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">CO2 Level</span>
 
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
@@ -117,9 +127,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <span class="paraUnit">ppm</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:100px;">
-                                            <!-- <span class="badge rounded-pill text-bg-dark" style="width:100px;">MAX VALUE :</span>
-                                    <br />
-                                    <span class="badge rounded-pill text-bg-dark" style="width:100px;">MIN VALUE :</span> -->
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -447,6 +454,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
     </script>
     <script src="../js/script.js"></script>
     <script src="../js/gauges.js"></script>
-    </body>
+</body>
 
 </html>
