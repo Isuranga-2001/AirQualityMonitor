@@ -86,7 +86,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                         <span class="paraName paraPres">TEMPERATURE</span>
                                         <div class="card">
                                             <canvas class="mx-auto" id="gauge-temp"></canvas>
-                                            <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
                                         </div>
                                     </div>
                                     <!-- temperature -->
@@ -94,10 +93,11 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">PRESSURE</span>
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" style="font-size:60px;" id="pressure">1000.7</span>
+                                            <span class="paraValue" style="font-size:60px;" id="pressure">0.0</span>
                                             <span class="paraUnit">Pa</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:130px;">
+                                            <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
                                         </div>
@@ -108,7 +108,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                         <span class="paraName paraPres">TVOC Level</span>
 
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" id="tvoc">1.5</span>
+                                            <span class="paraValue" id="tvoc">0.0</span>
                                             <span class="paraUnit">ppb</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:100px;">
@@ -123,7 +123,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                         <span class="paraName paraPres">CO2 Level</span>
 
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" id="co2">450</span>
+                                            <span class="paraValue" id="co2">0</span>
                                             <span class="paraUnit">ppm</span>
                                         </div>
                                         <div class="text-start ps-3" style="margin-top:100px;">
