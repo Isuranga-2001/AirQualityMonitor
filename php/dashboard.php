@@ -28,6 +28,8 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
     <!-- for gauges -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <script src="../js/mqttConnection.js" type="text/JavaScript"><script>
 </head>
 
 <body onload="pageLoad();">
@@ -47,7 +49,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                 <i class="fa fa-bluetooth-b"></i><span>Connected Device</span>
                             </div>
                             <div class="switch-toggle">
-                                <input type="checkbox" id="bluetooth">
+                                <input type="checkbox" id="bluetooth" onchange="EnableConnectedDevice(this)">
                                 <label for="bluetooth"></label>
                             </div>
                         </div>

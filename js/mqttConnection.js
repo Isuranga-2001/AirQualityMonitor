@@ -29,10 +29,19 @@ client.on('message', function (topic, message) {
 })
 
 function EnableLiveServer(checkboxElem){
-    if (checkboxElem.checked) {
-        client.publish('enable', '1');
-    } 
-    else {
-        client.publish('enable', '0');
-    }
+  if (checkboxElem.checked) {
+    client.publish('enable', '1');
+  } 
+  else {
+    client.publish('enable', '0');
+  }
+}
+
+function EnableConnectedDevice(checkboxElem){
+  if (checkboxElem.checked) {
+    client.publish('channel1', '1');
+  } 
+  else {
+    client.publish('channel1', '0');
+  }
 }
