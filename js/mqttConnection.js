@@ -18,10 +18,16 @@ client.on('connect', function () {
 client.on('message', function (topic, message) {
   //console.log(message.toString());
   if (topic == "temp"){
-    UpdateTemperature(message)
+    UpdateTemperature(message);
   }
   else if (topic == "humidity"){
-    UpdateHumidity(message)
+    UpdateHumidity(message);
+    try {
+      var tolerance = ((Number(message) - 80) * 3 / 40 + 2).toFixed(2);
+      document.getElementById("Humidity_Tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);  
+    } catch (error) {
+      console.log(error);
+    }
   }
   else{
     document.getElementById(topic).innerHTML = message.toString();
