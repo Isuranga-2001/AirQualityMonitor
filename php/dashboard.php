@@ -114,7 +114,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                         <span class="paraName paraPres">HUMIDIITY</span>
                                         <div class="card">
                                             <canvas class="mx-auto" id="gauge-humidity"></canvas>
-                                            <h6 class="text-danger fw-bolder" id="Humidity_Tolerance">Tolerance :&plusmn;(y-80)/5</h6>
+                                            <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
                                         </div>
                                     </div>
                                     <!-- humidity -->
