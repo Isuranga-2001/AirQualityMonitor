@@ -58,19 +58,45 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     </div>
                     <h1 id="topic">Temperature</h1>
                     <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
+                    <hr />
+                    <div class="d-block d-sm-flex my-3 col-12 p-1 justify-content-center">
+                        <!-- duration -->
+                        <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
+                            <option value="oneH">Last One Hour</option>
+                            <option value="24H">Last 24 Hours</option>
+                            <option value="oneW">Last One Week</option>
+                            <option value="oneW">Last month</option>
+                            <option value="oneW">Last 3 months</option>
+                            <option value="oneW">Last year</option>
+                            <option value="all">All</option>
+                        </select>
+                        <!-- duration -->
+                        <!-- parameter -->
+                        <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
+                            <option value="Temp">Temperature</option>
+                            <option value="Humidity">Relative Humidity</option>
+                            <option value="Pressure">Biometric Air Pressure</option>
+                            <option value="CO2">CO2</option>
+                            <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
+                        </select>
+                        <!-- parameter -->
+                    </div>
+
                     <div class="row">
                         <!-- parameter_card_wrapper -->
                         <div class="col-12">
                             <!-- parameter_cards -->
                             <div class="content d-none" style="margin-top:100px;">
                                 <div class="card-grid">
+
                                     <div class="card">
                                         <p class="card-title">Temperature</p>
                                         <canvas class="mx-auto" id="gauge-temperature"></canvas>
                                     </div>
+
                                 </div>
                             </div>
-                            <div class="row g-4 p-3 text-center mt-0 overflow-y-auto pb-5">
+                            <div class="row g-4 p-3 text-center overflow-y-auto pb-5">
                                 <div style="display:contents;">
                                     <!-- humidity -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
@@ -152,7 +178,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             <option value="all">All</option>
                         </select>
                         <!-- duration -->
-                        <table class="table" style="border-radius:10px;overflow:hidden;margin-bottom:30px;">
+                        <!-- <table class="table" style="border-radius:10px;overflow:hidden;margin-bottom:30px;">
                             <thead>
                                 <tr class="table-info fs-5">
                                     <th scope="col">Parameter</th>
@@ -193,30 +219,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <td>val5 | date</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <hr />
-                        <div class="d-block d-sm-flex my-3 col-12 p-1 justify-content-center">
-                            <!-- duration -->
-                            <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
-                                <option value="oneH">Last One Hour</option>
-                                <option value="24H">Last 24 Hours</option>
-                                <option value="oneW">Last One Week</option>
-                                <option value="oneW">Last month</option>
-                                <option value="oneW">Last 3 months</option>
-                                <option value="oneW">Last year</option>
-                                <option value="all">All</option>
-                            </select>
-                            <!-- duration -->
-                            <!-- parameter -->
-                            <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
-                                <option value="Temp">Temperature</option>
-                                <option value="Humidity">Relative Humidity</option>
-                                <option value="Pressure">Biometric Air Pressure</option>
-                                <option value="CO2">CO2</option>
-                                <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
-                            </select>
-                            <!-- parameter -->
-                        </div>
+                        </table> -->
 
                     </div>
                 </form>
