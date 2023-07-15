@@ -63,8 +63,8 @@
           <div class="col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4 bg-white rounded text-center shadow-lg" style="height:auto; margin-top: 10%;padding:40px;">
             <!-- input fields -->
             <div style="margin-top:100px;">
-              <img src="../images/icon1.png" style="width:100px;margin-top:-50px;" />
-              <h3 class="heading fw-bolder mt-3">LOGIN TO DASHBOARD</h3>
+              <img src="../images/icon2.png" style="width:100px;margin-top:-50px;" />
+              <h3 class="heading fw-bolder mt-3">LOGIN</h3>
               <label for="inp" class="inp">
                 <input type="text" id="uname" placeholder="&nbsp;">
                 <span class="label">ENTER USERNAME</span>
@@ -80,7 +80,6 @@
             <!-- input fields -->
             <div class="mt-0">
               <button class="formBtn loginBtn" style="width:180px;height:50px;" onclick="login();" id="btnlogin">LOGIN</button>
-              <button class="formBtn adminBtn" style="width:180px;height:50px;">SIGN UP</button>
             </div>
           </div>
           <!-- form -->
