@@ -82,7 +82,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             </select>
                             <!-- duration -->
                         </div>
-                        <div class="col-12 col-xl-8 text-center">
+                        <div class="col-12 col-xl-4 text-center">
                             <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
                         </div>
                     </div>
