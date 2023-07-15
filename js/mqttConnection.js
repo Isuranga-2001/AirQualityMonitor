@@ -1,7 +1,7 @@
 // Create a client instance with the broker host name and port
 var client  = mqtt.connect('wss://6576f9e38ece4cddb9d7c92576674be1.s2.eu.hivemq.cloud:8884/mqtt', {
-    username: 'isuranga2001',
-    password: '%C#3308291@5570I'
+    username: localStorage.getItem("username"),
+    password: localStorage.getItem("password")
 });
 
 // Handle the connection event
