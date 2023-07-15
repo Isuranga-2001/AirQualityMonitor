@@ -59,30 +59,36 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     <div class="text-center p-3">
                         <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
                     </div>
-                    <div class="d-block d-sm-flex my-3 col-12 p-1 justify-content-center">
-                        <!-- duration -->
-                        <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
-                            <option value="oneH">Last One Hour</option>
-                            <option value="24H">Last 24 Hours</option>
-                            <option value="oneW">Last One Week</option>
-                            <option value="oneW">Last month</option>
-                            <option value="oneW">Last 3 months</option>
-                            <option value="oneW">Last year</option>
-                            <option value="all">All</option>
-                        </select>
-                        <!-- duration -->
-                        <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
-                        <!-- parameter -->
-                        <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
-                            <option value="Temp">Temperature</option>
-                            <option value="Humidity">Relative Humidity</option>
-                            <option value="Pressure">Biometric Air Pressure</option>
-                            <option value="CO2">CO2</option>
-                            <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
-                        </select>
-                        <!-- parameter -->
+                    <div class="row">
+                        <div class="col-12 col-xl-4 d-inline-flex text-center">
+                            <!-- parameter -->
+                            <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
+                                <option value="Temp">Temperature</option>
+                                <option value="Humidity">Relative Humidity</option>
+                                <option value="Pressure">Biometric Air Pressure</option>
+                                <option value="CO2">CO2</option>
+                                <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
+                            </select>
+                            <!-- parameter -->
+                            <!-- duration -->
+                            <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
+                                <option value="oneH">Last One Hour</option>
+                                <option value="24H">Last 24 Hours</option>
+                                <option value="oneW">Last One Week</option>
+                                <option value="oneW">Last month</option>
+                                <option value="oneW">Last 3 months</option>
+                                <option value="oneW">Last year</option>
+                                <option value="all">All</option>
+                            </select>
+                            <!-- duration -->
+                        </div>
+                        <div class="col-12 col-xl-8 text-center">
+                            <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
+                        </div>
                     </div>
-                    <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;height:500px;"></canvas>
+                    <div id="chartContainer">
+                        <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
+                    </div>
                     <hr />
                     <div class="row">
                         <!-- parameter_card_wrapper -->
@@ -120,7 +126,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <span class="paraValue" style="font-size:60px;" id="pressure">0.0</span>
                                             <span class="paraUnit">Pa</span>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:160px;">
+                                        <div class="text-start ps-3" style="margin-top:100px;">
                                             <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
@@ -358,6 +364,9 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
         }
 
         function DrawChart(xValues, yValues) {
+            var container = document.getElementById('chartContainer');
+            container.style.height = '500px';
+
             var backgroundColor;
             var borderColor;
 
@@ -384,6 +393,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     break;
             }
 
+
             chart = new Chart("paraChart", {
                 type: "line",
                 data: {
@@ -407,9 +417,14 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                 max: paraMax
                             }
                         }]
-                    }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    height: 500 // Set the desired height here
                 }
             });
+
+
         }
     </script>
     <script src="../js/gauges.js"></script>
