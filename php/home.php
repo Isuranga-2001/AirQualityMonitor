@@ -96,6 +96,9 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                     client.subscribe('activeT');
                                 });
 
+                                const date = new Date();
+                                client.publish('activeT', String(date.getFullYear()) + ":" + String(date.getMonth()) + ":" + String(date.getDate()) + ":" + String(date.getHours()));
+
                                 client.on('message', function (topic, message) {
                                     document.getElementById("Ac_" + deviceID).innerHTML = "Online";
                                     document.getElementById("Ac_" + deviceID).style.background = "#198754";
