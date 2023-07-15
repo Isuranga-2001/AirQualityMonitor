@@ -1,3 +1,4 @@
+// dashboard gauges
 // new humidty gauge
 var gaugeHumnew = new RadialGauge({
     renderTo: 'gauge-hum',
