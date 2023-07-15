@@ -100,7 +100,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TEMPERATURE</span>
                                         <canvas class="mx-auto mt-4" id="gauge-temp"></canvas>
-                                        <div class="text-start ps-3">
+                                        <div class="text-start ps-3" style="margin-top:50px;">
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -112,7 +112,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                         <span class="paraName paraPres">HUMIDIITY</span>
                                         <canvas class="mx-auto mt-4" id="gauge-hum"></canvas>
                                         <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
-                                        <div class="text-start ps-3" style="margin-top:40px;">
+                                        <div class="text-start ps-3" style="margin-top:30px;">
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -126,7 +126,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <span class="paraValue" style="font-size:60px;" id="pressure">0.0</span>
                                             <span class="paraUnit">Pa</span>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:100px;">
+                                        <div class="text-start ps-3" style="margin-top:160px;">
                                             <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
@@ -148,7 +148,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <button class="btn btn-danger mt-5" id="co2_veryHight"></button>
                                             <h3 class="mt-4" id="co2_level">LOW</h3>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:10px;">
+                                        <div class="text-start ps-3" style="margin-top:15px;">
                                             <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
@@ -170,7 +170,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <button class="btn btn-danger mt-5" id="tvoc_veryHight"></button>
                                             <h3 class="mt-4" id="tvoc_level">LOW</h3>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:10px;">
+                                        <div class="text-start ps-3" style="margin-top:15px;">
                                             <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
@@ -427,7 +427,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
 
         }
     </script>
-    <script src="../js/gauges.js"></script>
+    <script src="../js/gauges2.js"></script>
 </body>
 
 </html>

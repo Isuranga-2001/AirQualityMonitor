@@ -69,19 +69,15 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                             <div style="display:contents;">
                                 <!-- temperature -->
                                 <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
-                                    
-                                        <p class="card-title">Temperature</p>
-                                        <canvas class="mx-auto" id="gauge-temperature"></canvas>
-                                    
+                                    <p class="card-title">Temperature</p>
+                                    <canvas class="mx-auto" id="gauge-temperature"></canvas>
                                 </div>
                                 <!-- temperature -->
                                 <!-- humidity -->
                                 <div class="paraCard mt-5 text-center" id="card0value" style="padding:10px;">
-                                    
-                                        <p class="card-title">Humidity</p>
-                                        <canvas class="mx-auto" id="gauge-humidity"></canvas>
-                                        <h6 class="text-danger fw-bolder" id="Humidity_Tolerance">Tolerance :&plusmn;(y-80)/5</h6>
-                                    
+                                    <p class="card-title">Humidity</p>
+                                    <canvas class="mx-auto" id="gauge-humidity"></canvas>
+                                    <h6 class="text-danger fw-bolder" id="Humidity_Tolerance">Tolerance :&plusmn;(y-80)/5</h6>
                                 </div>
                                 <!-- humidity -->
                                 <!-- pressure -->
