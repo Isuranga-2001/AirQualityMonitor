@@ -84,7 +84,7 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                             <div style="display:contents;">
                                 <!-- temperature,humidity,pressure -->
                                 <?php
-                                
+
                                 $temperature_rangeColors = array("#FF0000", "#FF9300", "#FBFF00", "#49FF00");
                                 $humdity_rangeColors = array("#52B1D2", "#73CCD8", "#E8E4E2", "#D0AE8B", "#05192C");
                                 $pressure_rangeColors = array("#fbe49f", "#e9ecd1", "#d8e1e1", "#b8dedf", "#98fdf5");
