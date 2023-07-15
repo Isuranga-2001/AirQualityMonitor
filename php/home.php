@@ -97,11 +97,14 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 });
 
                                 const date = new Date();
-                                client.publish('activeT', String(date.getFullYear()) + ":" + String(date.getMonth()) + ":" + String(date.getDate()) + ":" + String(date.getHours()));
+                                const cTime = String(date.getFullYear()) + ":" + String(date.getMonth()) + ":" + String(date.getDate()) + ":" + String(date.getHours());
+                                client.publish('activeT', cTime);
 
                                 client.on('message', function (topic, message) {
-                                    document.getElementById("Ac_" + deviceID).innerHTML = "Online";
-                                    document.getElementById("Ac_" + deviceID).style.background = "#198754";
+                                    if (String(message) == cTime){
+                                        document.getElementById("Ac_" + deviceID).innerHTML = "Online";
+                                        document.getElementById("Ac_" + deviceID).style.background = "#198754";
+                                    }
                                 });
                             }
                         }).catch((error) => {
