@@ -27,6 +27,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
     <link rel="stylesheet" href="../loaders/fnon.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script type="module">
         import {
             initializeApp
@@ -81,6 +82,29 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                             alert(error);
                         });
 
+                        get(child(dbRef, uname + "/Device/" + deviceID + "/MQTT")).then((snapshot2) => {
+                            if (snapshot2.exists()) {
+                                // Create a client instance with the broker host name and port
+                                var client  = mqtt.connect('wss://' + String(snapshot2.val()) + ':8884/mqtt', {
+                                    username: localStorage.getItem("username"),
+                                    password: localStorage.getItem("password")
+                                });
+
+                                // Handle the connection event
+                                client.on('connect', function () {
+                                    // Subscribe to a topic
+                                    client.subscribe('activeT');
+                                });
+
+                                client.on('message', function (topic, message) {
+                                    document.getElementById("Ac_" + deviceID).innerHTML = "Active";
+                                    document.getElementById("Ac_" + deviceID).style.background = "#198754";
+                                });
+                            }
+                        }).catch((error) => {
+                            alert(error);
+                        });
+
                         count++;
                     });
                 }
@@ -92,12 +116,12 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
         });
 
         function AddCard(num) {
-            // <span class="badge text-bg-danger">Inactive</span> for inactive
+            // <span class='badge text-bg-success'>Active</span> for inactive
             document.getElementById("cardHolder").innerHTML += `
             <div class='flip-card mx-auto' style='cursor:pointer;' onclick='loadDashboard(this)' id='` + num + `'>
                 <div class='flip-card-inner'>
                     <div class='flip-card-front' style="height:230px;">
-                    <span class='badge text-bg-success'>Active</span>
+                    <span class="badge" style="background-color:#dc3545;;" id='Ac_` + num + `'>Inactive</span>
                     <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'>Unknown<span></h5>
                     <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br/><h5 id='DID_` + num + `'><h5></h5>
                     </div>
