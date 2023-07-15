@@ -97,7 +97,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 });
 
                                 client.on('message', function (topic, message) {
-                                    document.getElementById("Ac_" + deviceID).innerHTML = "Active";
+                                    document.getElementById("Ac_" + deviceID).innerHTML = "Online";
                                     document.getElementById("Ac_" + deviceID).style.background = "#198754";
                                 });
                             }
@@ -121,7 +121,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
             <div class='flip-card mx-auto' style='cursor:pointer;' onclick='loadDashboard(this)' id='` + num + `'>
                 <div class='flip-card-inner'>
                     <div class='flip-card-front' style="height:230px;">
-                    <span class="badge" style="background-color:#dc3545;;" id='Ac_` + num + `'>Inactive</span>
+                    <span class="badge" style="background-color:#dc3545;;" id='Ac_` + num + `'>Offline</span>
                     <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'>Unknown<span></h5>
                     <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br/><h5 id='DID_` + num + `'><h5></h5>
                     </div>
