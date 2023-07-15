@@ -99,7 +99,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                     <div class='flip-card-front' style="height:230px;">
                     <span class='badge text-bg-success'>Active</span>
                     <h5 style='margin-top:40px;' class='text-center'><span id='DName_` + num + `'>Unknown<span></h5>
-                    <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br/><br/><span id='DID_` + num + `'><span></h5>
+                    <h5 style='margin-top:30px;' class='text-center'>DEVICE ID <br/><h5 id='DID_` + num + `'><h5></h5>
                     </div>
                 </div>
             </div>`;
