@@ -23,7 +23,7 @@ $history =  "style='background-color:#fed215;font-weight:bolder;'";
     <link href="../css/history2.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link href="../images/icon1.png" rel="icon" />
+    <link href="../images/icon2.png" rel="icon" />
 </head>
 
 <body>

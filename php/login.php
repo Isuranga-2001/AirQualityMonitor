@@ -6,7 +6,7 @@
   <link href="../css/bootstrap.css" rel="stylesheet" />
   <!-- <link href="../css/background.css" rel="stylesheet" /> -->
   <link href="../css/login.css" rel="stylesheet" />
-  <link href="../images/icon1.png" rel="icon" />
+  <link href="../images/icon2.png" rel="icon" />
   <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";

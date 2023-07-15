@@ -25,3 +25,7 @@ function gotoLive() {
 function pageLoad(){
   document.getElementById("device").innerHTML = localStorage.getItem("devicename") + " - " + localStorage.getItem("deviceID");
 }
+
+function gotoLogin(){
+  window.location.assign("../php/login.php");
+}

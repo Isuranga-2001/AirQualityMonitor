@@ -23,7 +23,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
     <link href="../css/history2.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link href="../images/icon1.png" rel="icon" />
+    <link href="../images/icon2.png" rel="icon" />
     <!-- for gauges -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="http://cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.7/all/gauge.min.js"></script>
@@ -59,9 +59,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                     <div class="text-center p-3">
                         <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
                     </div>
-                    <h1 id="topic">Temperature</h1>
-                    <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
-                    <hr />
                     <div class="d-block d-sm-flex my-3 col-12 p-1 justify-content-center">
                         <!-- duration -->
                         <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
@@ -74,6 +71,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             <option value="all">All</option>
                         </select>
                         <!-- duration -->
+                        <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
                         <!-- parameter -->
                         <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
                             <option value="Temp">Temperature</option>
@@ -84,37 +82,34 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                         </select>
                         <!-- parameter -->
                     </div>
-
+                    <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;height:500px;"></canvas>
+                    <hr />
                     <div class="row">
                         <!-- parameter_card_wrapper -->
                         <div class="col-12">
                             <!-- parameter_cards -->
-                            <div class="content d-none" style="margin-top:100px;">
-                                <div class="card-grid">
-
-                                    <div class="card">
-                                        <p class="card-title">Temperature</p>
-                                        <canvas class="mx-auto" id="gauge-temperature"></canvas>
-                                    </div>
-
-                                </div>
-                            </div>
                             <div class="row g-4 p-3 text-center overflow-y-auto pb-5">
                                 <div style="display:contents;">
                                     <!-- temperature -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TEMPERATURE</span>
-                                        <div class="card">
-                                            <canvas class="mx-auto" id="gauge-temp"></canvas>
+                                        <canvas class="mx-auto mt-4" id="gauge-temp"></canvas>
+                                        <div class="text-start ps-3">
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
                                         </div>
                                     </div>
                                     <!-- temperature -->
                                     <!-- humidity -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">HUMIDIITY</span>
-                                        <div class="card">
-                                            <canvas class="mx-auto" id="gauge-humidity"></canvas>
-                                            <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
+                                        <canvas class="mx-auto mt-4" id="gauge-hum"></canvas>
+                                        <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
+                                        <div class="text-start ps-3" style="margin-top:40px;">
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
                                         </div>
                                     </div>
                                     <!-- humidity -->
@@ -125,7 +120,8 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <span class="paraValue" style="font-size:60px;" id="pressure">0.0</span>
                                             <span class="paraUnit">Pa</span>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:130px;">
+                                        <div class="text-start ps-3" style="margin-top:160px;">
+                                            <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -135,12 +131,19 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <!-- co2 level -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">CO2 Level</span>
-
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
                                             <span class="paraValue" id="co2">0</span>
                                             <span class="paraUnit">ppm</span>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:100px;">
+                                        <div class="d-inline">
+                                            <button class="btn btn-primary mt-5" id="co2_low"></button>
+                                            <button class="btn btn-success mt-5" id="co2_normal"></button>
+                                            <button class="btn btn-warning mt-5" id="co2_high"></button>
+                                            <button class="btn btn-danger mt-5" id="co2_veryHight"></button>
+                                            <h3 class="mt-4" id="co2_level">LOW</h3>
+                                        </div>
+                                        <div class="text-start ps-3" style="margin-top:10px;">
+                                            <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -150,12 +153,19 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <!-- tvoc level -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TVOC Level</span>
-
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
                                             <span class="paraValue" id="tvoc">0.0</span>
                                             <span class="paraUnit">ppb</span>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:100px;">
+                                        <div class="d-inline">
+                                            <button class="btn btn-primary mt-5" id="tvoc_low"></button>
+                                            <button class="btn btn-success mt-5" id="tvoc_normal"></button>
+                                            <button class="btn btn-warning mt-5" id="tvoc_high"></button>
+                                            <button class="btn btn-danger mt-5" id="tvoc_veryHight"></button>
+                                            <h3 class="mt-4" id="tvoc_level">LOW</h3>
+                                        </div>
+                                        <div class="text-start ps-3" style="margin-top:10px;">
+                                            <br />
                                             <span class="text-dark">MAX VALUE:</span>
                                             <br />
                                             <span class="text-dark">MIN VALUE:</span>
@@ -168,62 +178,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             <!-- parameter_cards -->
                         </div>
                         <!-- parameter_card_wrapper -->
-                    </div>
-                    <div class="row text-center tempChart p-4">
-                        <!-- duration -->
-                        <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
-                            <option value="oneH">Last One Hour</option>
-                            <option value="24H">Last 24 Hours</option>
-                            <option value="oneW">Last One Week</option>
-                            <option value="oneW">Last month</option>
-                            <option value="oneW">Last 3 months</option>
-                            <option value="oneW">Last year</option>
-                            <option value="all">All</option>
-                        </select>
-                        <!-- duration -->
-                        <!-- <table class="table" style="border-radius:10px;overflow:hidden;margin-bottom:30px;">
-                            <thead>
-                                <tr class="table-info fs-5">
-                                    <th scope="col">Parameter</th>
-                                    <th scope="col">Highest value | Date</th>
-                                    <th scope="col">Lowest value | Date</th>
-                                    <th scope="col">Average value | Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">Temperature</th>
-                                    <td>val1 | date</td>
-                                    <td>val1 | date</td>
-                                    <td>val1 | date</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Humidity</th>
-                                    <td>val2 | date</td>
-                                    <td>val2 | date</td>
-                                    <td>val2 | date</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Pressure</th>
-                                    <td>val3 | date</td>
-                                    <td>val3 | date</td>
-                                    <td>val3 | date</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">TVOC level</th>
-                                    <td>val4 | date</td>
-                                    <td>val4 | date</td>
-                                    <td>val4 | date</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">CO2 level</th>
-                                    <td>val5 | date</td>
-                                    <td>val5 | date</td>
-                                    <td>val5 | date</td>
-                                </tr>
-                            </tbody>
-                        </table> -->
-
                     </div>
                 </form>
             </div>

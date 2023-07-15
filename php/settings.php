@@ -23,7 +23,7 @@ $settings =  "style='background-color:#fed215;font-weight:bolder;'";
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/settings.css" rel="stylesheet" />
     <title>Settings</title>
-    <link href="../images/icon1.png" rel="icon" />
+    <link href="../images/icon2.png" rel="icon" />
 </head>
 
 <body>

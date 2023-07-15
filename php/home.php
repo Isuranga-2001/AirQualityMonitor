@@ -23,15 +23,24 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
     <title>Home</title>
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../css/home.css" rel="stylesheet" />
-    <link href="../images/icon1.png" rel="icon" />
+    <link href="../images/icon2.png" rel="icon" />
     <link rel="stylesheet" href="../loaders/fnon.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-        import { getDatabase, ref, child, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
-            
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        import {
+            getDatabase,
+            ref,
+            child,
+            get
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
         const firebaseConfig = {
             apiKey: "AIzaSyCZV35Sd2Qo14fz3XORPncs7TudDTVRFLk",
             authDophp: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
@@ -48,7 +57,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
 
         const dbRef = ref(getDatabase());
 
-        window.addEventListener('DOMContentLoaded', (e) => { 
+        window.addEventListener('DOMContentLoaded', (e) => {
             var uname = localStorage.getItem("username");
             document.getElementById("uname").innerHTML = uname;
 
@@ -79,10 +88,10 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                 alert(error);
             });
 
-           
+
         });
 
-        function AddCard(num){
+        function AddCard(num) {
             // <span class="badge text-bg-danger">Inactive</span> for inactive
             document.getElementById("cardHolder").innerHTML += `
             <div class='flip-card mx-auto' style='cursor:pointer;' onclick='loadDashboard(this)' id='` + num + `'>
@@ -150,17 +159,10 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
             <div class="row">
                 <!-- profile_details -->
                 <div class="col-12 profile text-center p-5 text-light" style="margin-top:-150px;">
-                    <img src="../images/icon2.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;" onclick="closeNav()">
+                    <img src="../images/icon1.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;" onclick="closeNav()">
                 </div>
                 <div class="col-12 btnGrp my-5 mb-lg-5 mt-lg-0" style="margin-top:-100px;">
-                    <button class="profileBtn" <?php echo $settings; ?> onclick="gotoSettings()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
-                            <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z" />
-                        </svg>
-                        &nbsp;Settings
-                    </button>
-                    <br />
-                    <button class="profileBtn logout_btn" style="background-color:red;color:white;font-weight:bolder;">
+                    <button class="profileBtn logout_btn" style="background-color:red;color:white;font-weight:bolder;" onclick="gotoLogin();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
                             <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
@@ -180,7 +182,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
 
                     <div class="col-12 col-lg-4 col-xl-3 align d-block d-sm-none">
                         <div class="btnGrp text-center" style="margin-top:30px;">
-                            <img src="../images/icon2.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" onclick="openNav()" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="USER 001">
+                            <img src="../images/icon1.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" onclick="openNav()" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="USER 001">
                         </div>
                     </div>
 
@@ -189,18 +191,12 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                             <div class="row">
                                 <!-- profile_details -->
                                 <div class="col-6 col-lg-12 profile text-center p-5">
-                                    <img src="../images/icon2.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;">
+                                    <img src="../images/icon1.png" style="width:100px;border-radius:100%;" class="shadow avatar" alt="Avatar" style="cursor:pointer;">
                                     <br /><br />
                                     <h4 id="uname">USERNAME</h4>
                                 </div>
-                                <div class="col-6 col-lg-12 btnGrp my-5 mb-lg-5 mt-lg-0 text-center">
-                                    <button class="profileBtn" <?php echo $settings; ?> onclick="gotoSettings()">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
-                                            <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434l.071-.286zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5zm0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78h4.723zM5.048 3.967c-.03.021-.058.043-.087.065l.087-.065zm-.431.355A4.984 4.984 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8 4.617 4.322zm.344 7.646.087.065-.087-.065z" />
-                                        </svg>
-                                        &nbsp;Settings
-                                    </button>
-                                    <button class="profileBtn logout_btn" style="background-color:red;color:white;font-weight:bolder;">
+                                <div class="col-6 col-lg-12 btnGrp mt-lg-0 text-center">
+                                    <button class="profileBtn logout_btn" style="background-color:red;color:white;font-weight:bolder;margin-top:-100px;" onclick="gotoLogin();">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
                                             <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
@@ -228,70 +224,12 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                     <div class="col-12 col-lg-8 col-xl-9">
                         <div class="row">
                             <div class="d-flex flex-row mb-3 flex-wrap">
-                                <!-- large devices -->
-                                <div class="mx-auto">
-                                    <table class="table d-none d-xxl-block mt-5">
-                                        <tbody>
-                                            <tr style="height:fit-content;">
-                                                <td> <span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:red;">.</span>&nbsp;Highest temperature :</span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td> <span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:blue;">.</span>&nbsp;Lowest temperature :</span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                            </tr>
-                                            <tr style="height:fit-content;">
-                                                <td><span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:green;">.</span>&nbsp;Highest humidity :</span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td> <span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:orange;">.</span>&nbsp;Lowest humidity : </span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                            </tr>
-                                            <tr style="height:fit-content;">
-                                                <td> <span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:rgb(50, 130, 184);">.</span>&nbsp;Highest CO2 :</span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><span style="font-weight:bolder;margin:10px;" class="rounded-3 shadow p-2 fs-6"><span style="font-size:40px;color:rgb(52, 248, 176);">.</span>&nbsp;Lowest CO2 : </span></td>
-                                                <td><span id="" class="badge bg-dark text-light" style="margin-top:20px;font-size:20px;">DEVICE 0007</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- large devices -->
-                                <!-- small devices -->
-                                <div class="d-block d-xxl-none mx-auto">
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:red;">.</span>&nbsp;Highest temperature : <span id="" class="badge bg-dark text-light">DEVICE 0007</span></span>
-                                    </div>
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:blue;">.</span>&nbsp;Lowest temperature : <span id="" class="badge bg-dark text-light">DEVICE 0008</span></span>
-                                    </div>
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:green;">.</span>&nbsp;Highest humidity : <span id="" class="badge bg-dark text-light">DEVICE 0009</span></span>
-                                    </div>
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:orange;">.</span>&nbsp;Lowest humidity : <span id="" class="badge bg-dark text-light">DEVICE 0001</span></span>
-                                    </div>
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:rgb(50, 130, 184);">.</span>&nbsp;Highest CO2 : <span id="" class="badge bg-dark text-light">DEVICE 0002</span></span>
-                                    </div>
-                                    <div class="mx-auto">
-                                        <span style="font-weight:bolder;" class="rounded-3 shadow p-2 fs-3"><span style="font-size:90px;color:rgb(52, 248, 176);">.</span>&nbsp;Lowest CO2 : <span id="" class="badge bg-dark text-light">DEVICE 0003</span></span>
-                                    </div>
-                                </div>
-                                <!-- small devices -->
+                                <h1 class="mx-auto" style="margin-top:100px;">Welcome to Air Quality Monitoring System</h1>
                             </div>
                         </div>
-                        
+
                         <!-- user_room_details -->
-                        <div class="row row-cols-1 row-cols-md-2 g-4 p-3 text-center mt-0 overflow-y-auto p-4" style="height:90vh;" id="cardHolder">
-                            
-                        </div>
+                        <div class="row row-cols-1 row-cols-md-2 g-4 p-3 text-center overflow-y-auto p-4" style="height:90vh;margin-top:100px;" id="cardHolder"></div>
                         <!-- user_room_details -->
                     </div>
                     <!-- room details -->
