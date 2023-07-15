@@ -97,7 +97,7 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 });
 
                                 const date = new Date();
-                                const cTime = String(date.getFullYear()) + ":" + String(date.getMonth()) + ":" + String(date.getDate()) + ":" + String(date.getHours());
+                                const cTime = String(date.getFullYear()) + "-" + String(date.getMonth()) + "-" + String(date.getDate()) + "-" + String(date.getHours());
                                 client.publish('activeT', cTime);
 
                                 client.on('message', function (topic, message) {
