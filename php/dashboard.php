@@ -190,18 +190,9 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
         </div>
     </div>
     <script type="module">
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import {
-            getAnalytics
-        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-        import {
-            getDatabase,
-            ref,
-            child,
-            get
-        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        import {getDatabase,ref,child,get} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
         console.log('running');
 
@@ -287,7 +278,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
             var xValues = [];
             var yValues = [];
 
-            get(child(dbRef, "User02/Room08")).then((snapshot) => {
+            get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Reading/")).then((snapshot) => {
                 if (snapshot.exists()) {
 
                     var maximumValue = 0;
