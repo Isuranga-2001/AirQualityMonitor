@@ -1,0 +1,30 @@
+ <div class="row">
+                        <div class="col-12 col-xl-6 text-center">
+                            <div class="row">
+                                <div class="col-12 col-md-4">
+                                    <!-- parameter -->
+                                    <select name="parameter" id="parameter" class="form-select mx-auto my-3 mt-4" style="width:200px;margin-left:20px;">
+                                        <option value="Temp">Temperature</option>
+                                        <option value="Humidity">Relative Humidity</option>
+                                        <option value="Pressure">Biometric Air Pressure</option>
+                                        <option value="CO2">CO2</option>
+                                        <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
+                                    </select>
+                                    <!-- parameter -->
+                                </div>
+                                <div class="col-12 col-md-8">
+                                    <!-- duration -->
+                                    <div class="d-inline-flex p-4">
+                                        <label for="from" class="mt-3">From</label>
+                                        <input type="date" class="form-control dateInput ms-3" id="from" />
+                                        <label class="ms-3 mt-3" for="to">To</label>
+                                        <input type="date" class="form-control dateInput  ms-3" id="to" />
+                                    </div>
+                                    <!-- duration -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-6 text-center mt-3">
+                            <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
+                        </div>
+                    </div>

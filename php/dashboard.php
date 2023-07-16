@@ -32,9 +32,18 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
     <script src="../js/mqttConnection.js" type="text/JavaScript"><script>
     <script src="../js/script.js" type="text/JavaScript"></script>
     <script type="module">
-        import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-        import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
-        import {getDatabase,ref,child,get} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import {
+            getAnalytics
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+        import {
+            getDatabase,
+            ref,
+            child,
+            get
+        } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
         console.log('running');
 
@@ -71,29 +80,29 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
             for (let index = 0; index < paraArray.length; index++) {
                 get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Last/" + paraArray[index])).then((snapshot1) => {
                     if (snapshot1.exists()) {
-                        switch (paraArray[index]){
-                            case "Temp":{
+                        switch (paraArray[index]) {
+                            case "Temp": {
                                 UpdateTempnew(snapshot1.val());
                                 break;
                             }
-                            case "Humidity":{
+                            case "Humidity": {
                                 UpdateHumnew(snapshot1.val());
                                 break;
                             }
-                            case "Pressure":{
+                            case "Pressure": {
                                 document.getElementById("pressureD").innerHTML = (Number(snapshot1.val()) / 100).toFixed(2).toString();
                                 break;
                             }
-                            case "CO2":{
+                            case "CO2": {
                                 UpdateCO2Dash(snapshot1.val().toString());
                                 break;
                             }
-                            case "TVOC":{
+                            case "TVOC": {
                                 document.getElementById("tvocD").innerHTML = snapshot1.val().toString();
 
                                 break;
                             }
-                            case "Time":{
+                            case "Time": {
                                 document.getElementById("lasttime").innerHTML = "Indoor Air Quality Status of " + localStorage.getItem("devicename") + " at : " + snapshot1.val().toString();
                             }
                         }
@@ -106,7 +115,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
 
         UpdateData();
         //document.getElementById("pressureD").innerHtml = "Hello";
-        
+
         var selectedParameter = document.getElementById("parameter");
         selectedParameter.addEventListener('change', function() {
             para = selectedParameter.value;
@@ -322,39 +331,41 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                         <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-xl-4 d-inline-flex text-center">
-                            <!-- parameter -->
-                            <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
-                                <option value="Temp">Temperature</option>
-                                <option value="Humidity">Relative Humidity</option>
-                                <option value="Pressure">Biometric Air Pressure</option>
-                                <option value="CO2">CO2</option>
-                                <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
-                            </select>
-                            <!-- parameter -->
-                            <!-- duration -->
-                            <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
-                                <option value="oneH">Last One Hour</option>
-                                <option value="24H">Last 24 Hours</option>
-                                <option value="oneW">Last One Week</option>
-                                <option value="oneW">Last month</option>
-                                <option value="oneW">Last 3 months</option>
-                                <option value="oneW">Last year</option>
-                                <option value="all">All</option>
-                            </select>
-                            <!-- duration -->
+                        <div class="col-12 col-xl-6 text-center">
+                            <div class="row">
+                                <div class="offset-0 col-12 col-xl-5">
+                                    <!-- parameter -->
+                                    <select name="parameter" id="parameter" class="form-select my-3 mt-4 mx-auto" style="width:200px;">
+                                        <option value="Temp">Temperature</option>
+                                        <option value="Humidity">Relative Humidity</option>
+                                        <option value="Pressure">Biometric Air Pressure</option>
+                                        <option value="CO2">CO2</option>
+                                        <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
+                                    </select>
+                                    <!-- parameter -->
+                                </div>
+                                <div class="col-12 col-xl-6">
+                                    <!-- duration -->
+                                    <div class="d-inline-flex p-4">
+                                        <label for="from" class="mt-1">From</label>
+                                        <input type="date" class="form-control dateInput ms-3" id="from" />
+                                        <label class="ms-3 mt-1" for="to">To</label>
+                                        <input type="date" class="form-control dateInput  ms-3" id="to" />
+                                    </div>
+                                    <!-- duration -->
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 col-xl-4 text-center">
+                        <div class="col-12 col-xl-6 text-center mt-3">
                             <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
-                            
                         </div>
                     </div>
                     <div id="chartContainer">
-                        <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
+                        <canvas id="paraChart" style="width:100%;max-width:1500px;margin-left:auto;margin-right:auto;"></canvas>
                     </div>
                     <hr />
                     <h3 id="lasttime" style="margin-top:50px;margin-bottom:25px;">Last Updated : </h3>
-                    
+
                     <div class="row">
                         <!-- parameter_card_wrapper -->
                         <div class="col-12">
@@ -400,7 +411,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     </div>
                                     <!-- co2 level -->
                                     <!-- tvoc level -->
-                                    
+
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TVOC Level</span>
                                         <div style="border-radius:5px;color:black;margin-top:100px;">
@@ -427,7 +438,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
             </div>
         </div>
     </div>
-    
+
     <script src="../js/gauges2.js"></script>
 </body>
 
