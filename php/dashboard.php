@@ -66,7 +66,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
         var chart;
 
         window.addEventListener('DOMContentLoaded', (e) => {
-            const paraArray = ["Temp", "Humidity", "Pressure", "CO2", "TVOC"];
+            const paraArray = ["Temp", "Humidity", "Pressure", "CO2", "TVOC", "Time"];
 
             for (let index = 0; index < paraArray.length; index++) {
                 get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Last/" + paraArray[index])).then((snapshot1) => {
@@ -92,6 +92,9 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             case "TVOC":{
                                 document.getElementById("tvocD").innerHTML = snapshot1.val().toString();
                                 break;
+                            }
+                            case "Time":{
+                                document.getElementById("lasttime").innerHTML = "Indoor Air Quality Status of " + localStorage.getItem("devicename") + " at : " + snapshot1.val().toString();
                             }
                         }
                     }
@@ -350,6 +353,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                         <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
                     </div>
                     <hr />
+                    <h4 id="lasttime">Last Updated : </h4>
                     
                     <div class="row">
                         <!-- parameter_card_wrapper -->
@@ -361,37 +365,21 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">TEMPERATURE</span>
                                         <canvas class="mx-auto mt-4" id="gauge-temp"></canvas>
-                                        <div class="text-start ps-3" style="margin-top:50px;">
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
                                     </div>
                                     <!-- temperature -->
                                     <!-- humidity -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">HUMIDIITY</span>
                                         <canvas class="mx-auto mt-4" id="gauge-hum"></canvas>
-                                        <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
-                                        <div class="text-start ps-3" style="margin-top:30px;">
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
+                                        <h6 class="text-danger fw-bolder" id="tolerance">Tolerance :&plusmn;(y-80)/5</h6>
                                     </div>
                                     <!-- humidity -->
                                     <!-- pressure -->
                                     <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
                                         <span class="paraName paraPres">PRESSURE</span>
-                                        <div style="border-radius:5px;color:black;margin-top:100px;">
+                                        <div style="border-radius:5px;color:black;margin-top:150px;">
                                             <span class="paraValue" style="font-size:60px;" id="pressureD">0.0</span>
                                             <span class="paraUnit">hPa</span>
-                                        </div>
-                                        <div class="text-start ps-3" style="margin-top:160px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark" id="hh">MIN VALUE:</span>
                                         </div>
                                     </div>
                                     <!-- pressure -->
@@ -409,12 +397,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <button class="btn btn-danger mt-5" id="co2_veryHight"></button>
                                             <h3 class="mt-4" id="co2_level">LOW</h3>
                                         </div>
-                                        <div class="text-start ps-3" style="margin-top:15px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
                                     </div>
                                     <!-- co2 level -->
                                     <!-- tvoc level -->
@@ -431,12 +413,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                             <button class="btn btn-warning mt-5" id="tvoc_high"></button>
                                             <button class="btn btn-danger mt-5" id="tvoc_veryHight"></button>
                                             <h3 class="mt-4" id="tvoc_level">LOW</h3>
-                                        </div>
-                                        <div class="text-start ps-3" style="margin-top:15px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
                                         </div>
                                     </div>
                                     <!-- tvoc level -->
