@@ -85,12 +85,12 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                 break;
                             }
                             case "CO2":{
-                                //alert(snapshot1.val());
-                                document.getElementById("co2D").innerHTML = snapshot1.val().toString();
+                                UpdateCO2Dash(snapshot1.val().toString());
                                 break;
                             }
                             case "TVOC":{
                                 document.getElementById("tvocD").innerHTML = snapshot1.val().toString();
+
                                 break;
                             }
                             case "Time":{
@@ -353,7 +353,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                         <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
                     </div>
                     <hr />
-                    <h4 id="lasttime">Last Updated : </h4>
+                    <h3 id="lasttime" style="margin-top:50px;margin-bottom:25px;">Last Updated : </h3>
                     
                     <div class="row">
                         <!-- parameter_card_wrapper -->

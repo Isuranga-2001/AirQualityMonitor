@@ -29,8 +29,3 @@ function pageLoad(){
 function gotoLogin(){
   window.location.assign("../php/login.php");
 }
-
-function UpdatePressure(value){
-  //alert(value);
-  document.getElementById("pressureD").innerHtml = value.toString();
-}
