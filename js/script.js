@@ -27,5 +27,9 @@ function pageLoad(){
 }
 
 function gotoLogin(){
+  localStorage.setItem("devicename", "non");
+  localStorage.setItem("deviceID", "non");
+  localStorage.setItem("password", "non");
+  localStorage.setItem("username", "non");
   window.location.assign("../php/login.php");
 }
