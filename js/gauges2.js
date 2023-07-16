@@ -89,10 +89,21 @@ var gaugeHumnew = new RadialGauge({
     animationRule: "linear"
   }).draw();
   
-  function UpdateHumnew(hum){
-    gaugeHumnew.value = hum;
-  }
+function UpdateHumnew(hum){
+  gaugeHumnew.value = hum;
+  var tolerance = ((Number(hum) - 80) * 3 / 40 + 2).toFixed(2);
+  document.getElementById("tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);
+}
   
-  function UpdateTempnew(temp){
-    gaugeTempNew.value = temp;
+function UpdateTempnew(temp){
+  gaugeTempNew.value = temp;
+}
+
+function UpdateCO2Dash(val){
+  document.getElementById("co2D").innerHTML = val;
+  var co2_level = Number(val);
+
+  if (co2_level >= 400 && co2_level <= 650){
+    
   }
+}
