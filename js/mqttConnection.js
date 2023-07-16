@@ -25,7 +25,12 @@ client.on('message', function (topic, message) {
       UpdateHumidity(message);
       try {
         var tolerance = ((Number(message) - 80) * 3 / 40 + 2).toFixed(2);
-        document.getElementById("Humidity_Tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);  
+        if (tolerance <= 2){
+          document.getElementById("Humidity_Tolerance").innerHTML = "";
+        }
+        else{
+          document.getElementById("Humidity_Tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);
+        } 
       } catch (error) {
         console.log(error);
       }

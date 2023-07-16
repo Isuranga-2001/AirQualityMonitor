@@ -92,7 +92,12 @@ var gaugeHumnew = new RadialGauge({
 function UpdateHumnew(hum){
   gaugeHumnew.value = hum;
   var tolerance = ((Number(hum) - 80) * 3 / 40 + 2).toFixed(2);
-  document.getElementById("tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);
+  if (tolerance <= 2){
+    document.getElementById("tolerance").innerHTML = "";
+  }
+  else{
+    document.getElementById("tolerance").innerHTML = "Tolerance : &plusmn;" + String(tolerance);
+  }
 }
   
 function UpdateTempnew(temp){
