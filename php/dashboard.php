@@ -31,164 +31,6 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="../js/mqttConnection.js" type="text/JavaScript"><script>
     <script src="../js/script.js" type="text/JavaScript"></script>
-</head>
-
-<body onload="pageLoad();">
-    <div class="container-fluid">
-        <div class="row">
-            <?php
-
-            require "myNav.php";
-
-            ?>
-            <div class="col-12">
-                <form>
-                    <div class="row">
-                        <!-- switch -->
-                        <div class="switch-holder mt-4 mx-auto col-10 offset-1 col-md-4 offset-md-4">
-                            <div class="switch-label">
-                                <i class="fa fa-bluetooth-b"></i><span>Connected Device</span>
-                            </div>
-                            <div class="switch-toggle">
-                                <input type="checkbox" id="bluetooth" onchange="EnableConnectedDevice(this)">
-                                <label for="bluetooth"></label>
-                            </div>
-                        </div>
-                        <!-- switch -->
-                    </div>
-                    <div class="text-center p-3">
-                        <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-xl-4 d-inline-flex text-center">
-                            <!-- parameter -->
-                            <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
-                                <option value="Temp">Temperature</option>
-                                <option value="Humidity">Relative Humidity</option>
-                                <option value="Pressure">Biometric Air Pressure</option>
-                                <option value="CO2">CO2</option>
-                                <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
-                            </select>
-                            <!-- parameter -->
-                            <!-- duration -->
-                            <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
-                                <option value="oneH">Last One Hour</option>
-                                <option value="24H">Last 24 Hours</option>
-                                <option value="oneW">Last One Week</option>
-                                <option value="oneW">Last month</option>
-                                <option value="oneW">Last 3 months</option>
-                                <option value="oneW">Last year</option>
-                                <option value="all">All</option>
-                            </select>
-                            <!-- duration -->
-                        </div>
-                        <div class="col-12 col-xl-4 text-center">
-                            <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
-                        </div>
-                    </div>
-                    <div id="chartContainer">
-                        <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <!-- parameter_card_wrapper -->
-                        <div class="col-12">
-                            <!-- parameter_cards -->
-                            <div class="row g-4 p-3 text-center overflow-y-auto pb-5">
-                                <div style="display:contents;">
-                                    <!-- temperature -->
-                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
-                                        <span class="paraName paraPres">TEMPERATURE</span>
-                                        <canvas class="mx-auto mt-4" id="gauge-temp"></canvas>
-                                        <div class="text-start ps-3" style="margin-top:50px;">
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
-                                    </div>
-                                    <!-- temperature -->
-                                    <!-- humidity -->
-                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
-                                        <span class="paraName paraPres">HUMIDIITY</span>
-                                        <canvas class="mx-auto mt-4" id="gauge-hum"></canvas>
-                                        <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
-                                        <div class="text-start ps-3" style="margin-top:30px;">
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
-                                    </div>
-                                    <!-- humidity -->
-                                    <!-- pressure -->
-                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
-                                        <span class="paraName paraPres">PRESSURE</span>
-                                        <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" style="font-size:60px;" id="pressure">0.0</span>
-                                            <span class="paraUnit">Pa</span>
-                                        </div>
-                                        <div class="text-start ps-3" style="margin-top:160px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
-                                    </div>
-                                    <!-- pressure -->
-                                    <!-- co2 level -->
-                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
-                                        <span class="paraName paraPres">CO2 Level</span>
-                                        <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" id="co2">0</span>
-                                            <span class="paraUnit">ppm</span>
-                                        </div>
-                                        <div class="d-inline">
-                                            <button class="btn btn-primary mt-5" id="co2_low"></button>
-                                            <button class="btn btn-success mt-5" id="co2_normal"></button>
-                                            <button class="btn btn-warning mt-5" id="co2_high"></button>
-                                            <button class="btn btn-danger mt-5" id="co2_veryHight"></button>
-                                            <h3 class="mt-4" id="co2_level">LOW</h3>
-                                        </div>
-                                        <div class="text-start ps-3" style="margin-top:15px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
-                                    </div>
-                                    <!-- co2 level -->
-                                    <!-- tvoc level -->
-                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
-                                        <span class="paraName paraPres">TVOC Level</span>
-                                        <div style="border-radius:5px;color:black;margin-top:100px;">
-                                            <span class="paraValue" id="tvoc">0.0</span>
-                                            <span class="paraUnit">ppb</span>
-                                        </div>
-                                        <div class="d-inline">
-                                            <button class="btn btn-primary mt-5" id="tvoc_low"></button>
-                                            <button class="btn btn-success mt-5" id="tvoc_normal"></button>
-                                            <button class="btn btn-warning mt-5" id="tvoc_high"></button>
-                                            <button class="btn btn-danger mt-5" id="tvoc_veryHight"></button>
-                                            <h3 class="mt-4" id="tvoc_level">LOW</h3>
-                                        </div>
-                                        <div class="text-start ps-3" style="margin-top:15px;">
-                                            <br />
-                                            <span class="text-dark">MAX VALUE:</span>
-                                            <br />
-                                            <span class="text-dark">MIN VALUE:</span>
-                                        </div>
-                                    </div>
-                                    <!-- tvoc level -->
-                                    <!--  -->
-                                </div>
-                            </div>
-                            <!-- parameter_cards -->
-                        </div>
-                        <!-- parameter_card_wrapper -->
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <script type="module">
         import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
@@ -223,15 +65,45 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
 
         var chart;
 
-        UpdateData();
+        window.addEventListener('DOMContentLoaded', (e) => {
+            const paraArray = ["Temp", "Humidity", "Pressure", "CO2", "TVOC"];
 
-        var selectedInterval = document.getElementById('timeInterval');
-        selectedInterval.addEventListener('change', function() {
-            interval = selectedInterval.value;
-            chart.destroy();
-            UpdateData();
+            for (let index = 0; index < paraArray.length; index++) {
+                get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Last/" + paraArray[index])).then((snapshot1) => {
+                    if (snapshot1.exists()) {
+                        switch (paraArray[index]){
+                            case "Temp":{
+                                UpdateTempnew(snapshot1.val());
+                                break;
+                            }
+                            case "Humidity":{
+                                UpdateHumnew(snapshot1.val());
+                                break;
+                            }
+                            case "Pressure":{
+                                document.getElementById("pressureD").innerHTML = (Number(snapshot1.val()) / 100).toFixed(2).toString();
+                                break;
+                            }
+                            case "CO2":{
+                                //alert(snapshot1.val());
+                                document.getElementById("co2D").innerHTML = snapshot1.val().toString();
+                                break;
+                            }
+                            case "TVOC":{
+                                document.getElementById("tvocD").innerHTML = snapshot1.val().toString();
+                                break;
+                            }
+                        }
+                    }
+                }).catch((error) => {
+                    alert(error);
+                });
+            }
         });
 
+        UpdateData();
+        //document.getElementById("pressureD").innerHtml = "Hello";
+        
         var selectedParameter = document.getElementById("parameter");
         selectedParameter.addEventListener('change', function() {
             para = selectedParameter.value;
@@ -341,7 +213,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                         });
                     });
                 } else {
-                    alert("Invalid");
+                    console.log("Invalid");
                 }
 
                 if (para == "TVOC" || para == "CO2") {
@@ -350,7 +222,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                 DrawChart(xValues, yValues);
 
             }).catch((error) => {
-                alert(error);
+                console.log(error);
             });
         }
 
@@ -418,6 +290,168 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
 
         }
     </script>
+</head>
+
+<body onload="pageLoad();">
+    <div class="container-fluid">
+        <div class="row">
+            <?php
+
+            require "myNav.php";
+
+            ?>
+            <div class="col-12">
+                <form>
+                    <div class="row">
+                        <!-- switch -->
+                        <div class="switch-holder mt-4 mx-auto col-10 offset-1 col-md-4 offset-md-4">
+                            <div class="switch-label">
+                                <i class="fa fa-bluetooth-b"></i><span>Connected Device</span>
+                            </div>
+                            <div class="switch-toggle">
+                                <input type="checkbox" id="bluetooth" onchange="EnableConnectedDevice(this)">
+                                <label for="bluetooth"></label>
+                            </div>
+                        </div>
+                        <!-- switch -->
+                    </div>
+                    <div class="text-center p-3">
+                        <h3 id="device" class="badge bg-dark mx-auto fs-4" style="width:fit-content;">DEVICE 0000</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-xl-4 d-inline-flex text-center">
+                            <!-- parameter -->
+                            <select name="parameter" id="parameter" class="form-select mx-auto my-3" style="width:200px;margin-left:20px;">
+                                <option value="Temp">Temperature</option>
+                                <option value="Humidity">Relative Humidity</option>
+                                <option value="Pressure">Biometric Air Pressure</option>
+                                <option value="CO2">CO2</option>
+                                <option value="TVOC">Total Volatile Organic Compounds (TVOC)</option>
+                            </select>
+                            <!-- parameter -->
+                            <!-- duration -->
+                            <select name="duration" id="timeInterval" class="form-select mx-auto my-3" style="width:200px;">
+                                <option value="oneH">Last One Hour</option>
+                                <option value="24H">Last 24 Hours</option>
+                                <option value="oneW">Last One Week</option>
+                                <option value="oneW">Last month</option>
+                                <option value="oneW">Last 3 months</option>
+                                <option value="oneW">Last year</option>
+                                <option value="all">All</option>
+                            </select>
+                            <!-- duration -->
+                        </div>
+                        <div class="col-12 col-xl-4 text-center">
+                            <span id="topic" style="font-size:35px;font-weight:bolder;">Temperature</span>
+                            
+                        </div>
+                    </div>
+                    <div id="chartContainer">
+                        <canvas id="paraChart" style="width:100%;max-width: 1500px;margin-left:auto;margin-right:auto;"></canvas>
+                    </div>
+                    <hr />
+                    
+                    <div class="row">
+                        <!-- parameter_card_wrapper -->
+                        <div class="col-12">
+                            <!-- parameter_cards -->
+                            <div class="row g-4 p-3 text-center overflow-y-auto pb-5">
+                                <div style="display:contents;">
+                                    <!-- temperature -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">TEMPERATURE</span>
+                                        <canvas class="mx-auto mt-4" id="gauge-temp"></canvas>
+                                        <div class="text-start ps-3" style="margin-top:50px;">
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
+                                        </div>
+                                    </div>
+                                    <!-- temperature -->
+                                    <!-- humidity -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">HUMIDIITY</span>
+                                        <canvas class="mx-auto mt-4" id="gauge-hum"></canvas>
+                                        <h6 class="text-danger fw-bolder">Tolerance :&plusmn;(y-80)/5</h6>
+                                        <div class="text-start ps-3" style="margin-top:30px;">
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
+                                        </div>
+                                    </div>
+                                    <!-- humidity -->
+                                    <!-- pressure -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">PRESSURE</span>
+                                        <div style="border-radius:5px;color:black;margin-top:100px;">
+                                            <span class="paraValue" style="font-size:60px;" id="pressureD">0.0</span>
+                                            <span class="paraUnit">hPa</span>
+                                        </div>
+                                        <div class="text-start ps-3" style="margin-top:160px;">
+                                            <br />
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark" id="hh">MIN VALUE:</span>
+                                        </div>
+                                    </div>
+                                    <!-- pressure -->
+                                    <!-- co2 level -->
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">CO2 Level</span>
+                                        <div style="border-radius:5px;color:black;margin-top:100px;">
+                                            <span class="paraValue" id="co2D">0</span>
+                                            <span class="paraUnit">ppm</span>
+                                        </div>
+                                        <div class="d-inline">
+                                            <button class="btn btn-primary mt-5" id="co2_low"></button>
+                                            <button class="btn btn-success mt-5" id="co2_normal"></button>
+                                            <button class="btn btn-warning mt-5" id="co2_high"></button>
+                                            <button class="btn btn-danger mt-5" id="co2_veryHight"></button>
+                                            <h3 class="mt-4" id="co2_level">LOW</h3>
+                                        </div>
+                                        <div class="text-start ps-3" style="margin-top:15px;">
+                                            <br />
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
+                                        </div>
+                                    </div>
+                                    <!-- co2 level -->
+                                    <!-- tvoc level -->
+                                    
+                                    <div class="paraCard mt-4 text-center" id="card0value" style="padding:10px;">
+                                        <span class="paraName paraPres">TVOC Level</span>
+                                        <div style="border-radius:5px;color:black;margin-top:100px;">
+                                            <span class="paraValue" id="tvocD">0</span>
+                                            <span class="paraUnit">ppb</span>
+                                        </div>
+                                        <div class="d-inline">
+                                            <button class="btn btn-primary mt-5" id="tvoc_low"></button>
+                                            <button class="btn btn-success mt-5" id="tvoc_normal"></button>
+                                            <button class="btn btn-warning mt-5" id="tvoc_high"></button>
+                                            <button class="btn btn-danger mt-5" id="tvoc_veryHight"></button>
+                                            <h3 class="mt-4" id="tvoc_level">LOW</h3>
+                                        </div>
+                                        <div class="text-start ps-3" style="margin-top:15px;">
+                                            <br />
+                                            <span class="text-dark">MAX VALUE:</span>
+                                            <br />
+                                            <span class="text-dark">MIN VALUE:</span>
+                                        </div>
+                                    </div>
+                                    <!-- tvoc level -->
+                                    <!--  -->
+                                </div>
+                            </div>
+                            <!-- parameter_cards -->
+                        </div>
+                        <!-- parameter_card_wrapper -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
     <script src="../js/gauges2.js"></script>
 </body>
 

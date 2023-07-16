@@ -97,10 +97,12 @@ $home = "style='background-color:#fed215;font-weight:bolder;'";
                                 });
 
                                 const date = new Date();
-                                const cTime = String(date.getFullYear()) + "-" + String(date.getMonth()) + "-" + String(date.getDate()) + "-" + String(date.getHours());
-                                client.publish('activeT', cTime);
+                                const cTime = String(date.getFullYear()) + "-" + String(date.getMonth() + 1) + "-" + String(date.getDate()) + "-" + String(date.getHours());
+                                //alert(cTime);
+                                client.publish('activeR', cTime);
 
                                 client.on('message', function (topic, message) {
+                                    //alert(String(message) + " :: " + cTime);
                                     if (String(message) == cTime){
                                         document.getElementById("Ac_" + deviceID).innerHTML = "Online";
                                         document.getElementById("Ac_" + deviceID).style.background = "#198754";
