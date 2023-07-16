@@ -1,3 +1,4 @@
+// live gauges
 // Get current sensor readings when the page loads  
 //window.addEventListener('load', getReadings);
 
