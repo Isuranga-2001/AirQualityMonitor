@@ -89,7 +89,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                                 break;
                             }
                             case "TVOC":{
-                                document.getElementById("tvocD").innerHTML = snapshot1.val().toString();
+                                UpdateTVOCDash(snapshot1.val().toString());
 
                                 break;
                             }

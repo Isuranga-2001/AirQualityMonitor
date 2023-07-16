@@ -103,7 +103,149 @@ function UpdateCO2Dash(val){
   document.getElementById("co2D").innerHTML = val;
   var co2_level = Number(val);
 
+  var lowbtn = document.getElementById("co2_low");
+  var normalbtn = document.getElementById("co2_normal");
+  var warningbtn = document.getElementById("co2_high");
+  var highbtn = document.getElementById("co2_veryHight");
+
+
   if (co2_level >= 400 && co2_level <= 650){
-    
+    document.getElementById("co2_level").innerHTML = "Excellent";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      warningbtn.style.backgroundColor = 
+      highbtn.style.backgroundColor = 
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      highbtn.style.borderColor = "#0d6efd";
+  }
+  else if (co2_level > 650 && co2_level <= 850){
+    document.getElementById("co2_level").innerHTML = "Good";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      warningbtn.style.backgroundColor = 
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor = 
+      warningbtn.style.borderColor = "#198754";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = "#495057";
+  }
+  else if (co2_level > 850 && co2_level <= 1050){
+    document.getElementById("co2_level").innerHTML = "Fair";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      warningbtn.style.backgroundColor = 
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor = 
+      warningbtn.style.borderColor = "#198754";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = "#adb5bd";
+  }
+  else if (co2_level > 1050 && co2_level <= 1550){
+    document.getElementById("co2_level").innerHTML = "Moderate";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor =  
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor =  "#ffc107";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      warningbtn.style.backgroundColor = "#adb5bd";
+  }
+  else{
+    document.getElementById("co2_level").innerHTML = "Bad";
+
+    lowbtn.style.backgroundColor =   
+      lowbtn.style.borderColor = "#dc3545";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      warningbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      normalbtn.style.borderColor = "#adb5bd";
+  }
+}
+
+function UpdateTVOCDash(val){
+  document.getElementById("tvocD").innerHTML = val;
+  var co2_level = Number(val);
+
+  var lowbtn = document.getElementById("tvoc_low");
+  var normalbtn = document.getElementById("tvoc_normal");
+  var warningbtn = document.getElementById("tvoc_high");
+  var highbtn = document.getElementById("tvoc_veryHight");
+
+  if (co2_level >= 0 && co2_level <= 65){
+    document.getElementById("tvoc_level").innerHTML = "Excellent";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      warningbtn.style.backgroundColor = 
+      highbtn.style.backgroundColor = 
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      highbtn.style.borderColor = "#0d6efd";
+  }
+  else if (co2_level > 65 && co2_level <= 220){
+    document.getElementById("tvoc_level").innerHTML = "Good";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      warningbtn.style.backgroundColor = 
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor = 
+      warningbtn.style.borderColor = "#198754";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = "#adb5bd";
+  }
+  else if (co2_level > 220 && co2_level <= 660){
+    document.getElementById("tvoc_level").innerHTML = "Moderate";
+
+    lowbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor =  
+      lowbtn.style.borderColor = 
+      normalbtn.style.borderColor =  "#ffc107";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      warningbtn.style.backgroundColor = "#adb5bd";s
+  }
+  else if (co2_level > 660 && co2_level <= 2200){
+    document.getElementById("tvoc_level").innerHTML = "Poor";
+
+    lowbtn.style.backgroundColor =   
+      lowbtn.style.borderColor = "#dc3545";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      warningbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      normalbtn.style.borderColor = "#adb5bd";
+  }
+  else{
+    document.getElementById("tvoc_level").innerHTML = "Bad";
+
+    lowbtn.style.backgroundColor =   
+      lowbtn.style.borderColor = "#dc3545";
+
+    highbtn.style.backgroundColor = 
+      highbtn.style.borderColor = 
+      warningbtn.style.borderColor = 
+      warningbtn.style.backgroundColor = 
+      normalbtn.style.backgroundColor = 
+      normalbtn.style.borderColor = "#adb5bd";
   }
 }
