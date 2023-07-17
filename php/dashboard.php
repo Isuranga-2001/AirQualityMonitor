@@ -162,7 +162,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
             var xValues = [];
             var yValues = [];
 
-            get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Reading/")).then((snapshot) => {
+            get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Readings/")).then((snapshot) => {
                 if (snapshot.exists()) {
 
                     var maximumValue = 0;
