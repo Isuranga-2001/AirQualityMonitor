@@ -1,173 +1,263 @@
-google.charts.load('current', {
-    packages: ['corechart', 'line']
+import {initializeApp} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js";
+import {
+    getDatabase,
+    ref,
+    child,
+    get
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCZV35Sd2Qo14fz3XORPncs7TudDTVRFLk",
+    authDophp: "airqualitymonitoringsyst-87ae7.firebaseapp.com",
+    databaseURL: "https://airqualitymonitoringsyst-87ae7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "airqualitymonitoringsyst-87ae7",
+    storageBucket: "airqualitymonitoringsyst-87ae7.appspot.com",
+    messagingSenderId: "451013569860",
+    appId: "1:451013569860:web:bf8e9bc4946c3b13f3bb11",
+    measurementId: "G-NBW598T1DB"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+const dbRef = ref(getDatabase());
+
+var para = "Temp";
+
+var paraName = "Temp";
+var paraValue = "31";
+
+var paraMin = 0;
+var paraMax = 100;
+
+var chart;
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    const paraArray = ["Temp", "Humidity", "Pressure", "CO2", "TVOC", "Time"];
+
+    for (let index = 0; index < paraArray.length; index++) {
+        get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Last/" + paraArray[index])).then((snapshot1) => {
+            if (snapshot1.exists()) {
+                switch (paraArray[index]) {
+                    case "Temp": {
+                        UpdateTempnew(snapshot1.val());
+                        break;
+                    }
+                    case "Humidity": {
+                        UpdateHumnew(snapshot1.val());
+                        break;
+                    }
+                    case "Pressure": {
+                        document.getElementById("pressureD").innerHTML = (Number(snapshot1.val()) / 100).toFixed(2).toString();
+                        break;
+                    }
+                    case "CO2": {
+                        UpdateCO2Dash(snapshot1.val().toString());
+                        break;
+                    }
+                    case "TVOC":{
+                        UpdateTVOCDash(snapshot1.val().toString());
+
+                        break;
+                    }
+                    case "Time": {
+                        document.getElementById("lasttime").innerHTML = "Indoor Air Quality Status of " + localStorage.getItem("devicename") + " at : " + snapshot1.val().toString();
+                    }
+                }
+            }
+        }).catch((error) => {
+            alert(error);
+        });
+    }
 });
-google.charts.setOnLoadCallback(drawLogScales);
 
-function drawLogScales() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('number', 'X');
-    data.addColumn('number', 'Days');
+UpdateData();
+//document.getElementById("pressureD").innerHtml = "Hello";
 
-    var options = {
-        hAxis: {
-            title: 'Time',
-            logScale: false,
-            format: '0',
-            ticks: []
-        },
-        vAxis: {
-            title: 'Temperature',
-            logScale: false
-        },
-        colors: ['#FF6B6B']
-    };
+var selectedParameter = document.getElementById("parameter");
+selectedParameter.addEventListener('change', function() {
+    para = selectedParameter.value;
 
-    var chart = new google.visualization.LineChart(document.getElementById('temperature_chart'));
+    chart.destroy();
 
-    var select = document.getElementById('timeInterval_fortemperature');
-    select.addEventListener('change', function() {
-        var interval = select.value;
-        updateData(interval);
-    });
+    switch (para) {
+        case "Temp": {
+            paraMin = 0;
+            paraMax = 125;
+            document.getElementById("topic").innerHTML = "Temperature";
+            break;
+        }
+        case "Humidity": {
+            paraMin = 0;
+            paraMax = 100;
+            document.getElementById("topic").innerHTML = "Relative Humidity";
+            break;
+        }
+        case "Pressure": {
+            paraMin = 30000;
+            paraMax = 110000;
+            document.getElementById("topic").innerHTML = "Biometric Air Pressure";
+            break;
+        }
+        case "CO2": {
+            paraMin = 400;
+            paraMax = 60000;
+            document.getElementById("topic").innerHTML = "CO2";
+            break;
+        }
+        case "TVOC": {
+            paraMin = 0;
+            paraMax = 60000;
+            document.getElementById("topic").innerHTML = "Total Volatile Organic Compounds (TVOC)";
+            break;
+        }
+    }
 
-    function updateData(interval) {
-        var newData = [];
-        var hAxisTitle = 'Time';
-        var hAxisTicks = [];
-        switch (interval) {
-            case 'hours':
-                newData = [
-                    [0, 0],
-                    [6, 10],
-                    [12, 23],
-                    [18, 17],
-                    [24, 18],
-                    [30, 9],
-                    [36, 11],
-                    [42, 27],
-                    [48, 33],
-                    [54, 40],
-                    [60, 32],
-                    [66, 35],
-                    [69, 30]
-                ];
-                hAxisTitle = 'Hours';
-                hAxisTicks = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 69];
-                break;
-            case 'days':
-                newData = [
-                    [0, 0],
-                    [1, 10],
-                    [2, 23],
-                    [3, 17],
-                    [4, 18],
-                    [5, 9],
-                    [6, 11],
-                    [7, 27],
-                    [8, 33],
-                    [9, 40],
-                    [10, 32],
-                    [11, 35],
-                    [12, 30],
-                    [13, 40],
-                    [14, 42],
-                    [15, 47],
-                    [16, 44],
-                    [17, 48],
-                    [18, 52],
-                    [19, 54],
-                    [20, 42],
-                    [21, 55],
-                    [22, 56],
-                    [23, 57],
-                    [24, 60],
-                    [25, 50],
-                    [26, 52],
-                    [27, 51],
-                    [28, 49],
-                    [29, 53],
-                    [30, 55],
-                    [31, 60],
-                    [32, 61],
-                    [33, 59],
-                    [34, 62],
-                    [35, 65],
-                    [36, 62],
-                    [37, 58],
-                    [38, 55],
-                    [39, 61],
-                    [40, 64],
-                    [41, 65],
-                    [42, 63],
-                    [43, 66],
-                    [44, 67],
-                    [45, 69],
-                    [46, 69],
-                    [47, 70],
-                    [48, 72],
-                    [49, 68],
-                    [50, 66],
-                    [51, 65],
-                    [52, 67],
-                    [53, 70],
-                    [54, 71],
-                    [55, 72],
-                    [56, 73],
-                    [57, 75],
-                    [58, 70],
-                    [59, 68],
-                    [60, 64],
-                    [61, 60],
-                    [62, 65],
-                    [63, 67],
-                    [64, 68],
-                    [65, 69],
-                    [66, 70],
-                    [67, 72],
-                    [68, 75],
-                    [69, 80]
-                ];
-                hAxisTitle = 'Days';
-                hAxisTicks = [0, 10, 20, 30, 40, 50, 60];
-                break;
-            case 'weeks':
-                newData = [
-                    [0, 0],
-                    [14, 23],
-                    [28, 40],
-                    [42, 52],
-                    [56, 70],
-                    [69, 30]
-                ];
-                hAxisTitle = 'Weeks';
-                hAxisTicks = [0, 14, 28, 42, 56, 69];
-                break;
-            case 'months':
-                newData = [
-                    [0, 0],
-                    [30, 23],
-                    [60, 40],
-                    [69, 30]
-                ];
-                hAxisTitle = 'Months';
-                hAxisTicks = [0, 30, 60, 69];
-                break;
+    UpdateData();
+});
+
+function UpdateData() {
+    var xValues = [];
+    var yValues = [];
+
+    get(child(dbRef, "/" + localStorage.getItem("username") + "/Device/" + localStorage.getItem("deviceID") + "/Readings/")).then((snapshot) => {
+        if (snapshot.exists()) {
+
+            var maximumValue = 0;
+
+            snapshot.forEach(function(value) {
+                var childObject = value.val();
+
+                Object.keys(childObject).forEach(e => {
+                    paraName = e.toString();
+                    if (paraName == para) {
+                        paraValue = childObject[e];
+
+                        switch (para) {
+                            case "Temp": {
+                                if (Number(paraValue) > -50) {
+                                    xValues.push(value.key);
+                                    yValues.push(paraValue);
+                                }
+                                break;
+                            }
+                            case "Humidity": {
+                                if (Number(paraValue) > 0) {
+                                    xValues.push(value.key);
+                                    yValues.push(paraValue);
+                                }
+                                break;
+                            }
+                            case "Pressure": {
+                                if (Number(paraValue) > 30000) {
+                                    xValues.push(value.key);
+                                    yValues.push(paraValue);
+                                }
+                                break;
+                            }
+                            case "CO2": {
+                                if (Number(paraValue) > 400) {
+                                    xValues.push(value.key);
+                                    yValues.push(paraValue);
+
+                                    if (maximumValue < paraValue) {
+                                        maximumValue = paraValue;
+                                    }
+                                }
+                                break;
+                            }
+                            case "TVOC": {
+                                if (Number(paraValue) >= 0) {
+                                    xValues.push(value.key);
+                                    yValues.push(paraValue);
+
+                                    if (maximumValue < paraValue) {
+                                        maximumValue = paraValue;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+
+                    }
+                });
+            });
+        } else {
+            console.log("Invalid");
         }
 
-        
+        if (para == "TVOC" || para == "CO2") {
+            paraMax = maximumValue;
+        }
+        DrawChart(xValues, yValues);
 
-        data.removeRows(0, data.getNumberOfRows());
-        data.addRows(newData);
-        options.hAxis.title = hAxisTitle;
-        options.hAxis.ticks = hAxisTicks;
-        drawChart();
+    }).catch((error) => {
+        console.log(error);
+    });
+}
+
+function DrawChart(xValues, yValues) {
+    var container = document.getElementById('chartContainer');
+    container.style.height = '500px';
+
+    var backgroundColor;
+    var borderColor;
+
+    switch (para) {
+        case "Temp":
+            backgroundColor = "rgba(255,0,0,1.0)";
+            borderColor = "rgba(255,0,0,0.8)";
+            break;
+        case "Humidity":
+            backgroundColor = "rgba(30,144,255,1.0)";
+            borderColor = "rgba(30,144,255,0.8)";
+            break;
+        case "Pressure":
+            backgroundColor = "rgba(205,133,63,1.0)";
+            borderColor = "rgba(205,133,63,0.8)";
+            break;
+        case "CO2":
+            backgroundColor = "rgba(34,139,34,1.0)";
+            borderColor = "rgba(34,139,34,0.8)";
+            break;
+        case "TVOC":
+            backgroundColor = "rgba(255,140,0,1.0)";
+            borderColor = "rgba(255,140,0,0.8)";
+            break;
     }
 
-    function drawChart() {
-        chart.draw(data, options);
-    }
 
-    updateData('days'); // Set the initial data
+    chart = new Chart("paraChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                fill: false,
+                lineTension: 0,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: paraMin,
+                        max: paraMax
+                    }
+                }]
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+            height: 500 // Set the desired height here
+        }
+    });
 
-    // ...
+
 }

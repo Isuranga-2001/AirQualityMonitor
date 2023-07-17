@@ -137,7 +137,7 @@ function UpdateCO2Dash(val){
       warningbtn.style.borderColor = "#198754";
 
     highbtn.style.backgroundColor = 
-      highbtn.style.borderColor = "#495057";
+      highbtn.style.borderColor = "#adb5bd";
   }
   else if (co2_level > 850 && co2_level <= 1050){
     document.getElementById("co2_level").innerHTML = "Fair";
