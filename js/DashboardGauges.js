@@ -225,7 +225,7 @@ function UpdateTVOCDash(val){
     highbtn.style.backgroundColor = 
       highbtn.style.borderColor = 
       warningbtn.style.borderColor = 
-      warningbtn.style.backgroundColor = "#adb5bd";s
+      warningbtn.style.backgroundColor = "#adb5bd";
   }
   else if (co2_level > 660 && co2_level <= 2200){
     document.getElementById("tvoc_level").innerHTML = "Poor";

@@ -34,6 +34,9 @@ var paraMax = 100;
 
 var chart;
 
+var startDate = document.getElementById("startdate");
+var endDate = document.getElementById("enddate");
+
 window.addEventListener('DOMContentLoaded', (e) => {
     const paraArray = ["Temp", "Humidity", "Pressure", "CO2", "TVOC", "Time"];
 
@@ -68,13 +71,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 }
             }
         }).catch((error) => {
-            alert(error);
+            console.log(error);
         });
     }
 });
 
+SetupDates();
 UpdateData();
-//document.getElementById("pressureD").innerHtml = "Hello";
 
 var selectedParameter = document.getElementById("parameter");
 selectedParameter.addEventListener('change', function() {
@@ -118,7 +121,20 @@ selectedParameter.addEventListener('change', function() {
     UpdateData();
 });
 
+startDate.onchange = function(){
+    UpdateData();
+}
+
+endDate.onchange = function(){
+    UpdateData();
+}
+
 function UpdateData() {
+    //alert("hsd");
+    if (!CheckDateInput()){
+        return;
+    }
+
     var xValues = [];
     var yValues = [];
 
@@ -137,28 +153,28 @@ function UpdateData() {
 
                         switch (para) {
                             case "Temp": {
-                                if (Number(paraValue) > -50) {
+                                if (Number(paraValue) > -50 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
                                 }
                                 break;
                             }
                             case "Humidity": {
-                                if (Number(paraValue) > 0) {
+                                if (Number(paraValue) > 0 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
                                 }
                                 break;
                             }
                             case "Pressure": {
-                                if (Number(paraValue) > 30000) {
+                                if (Number(paraValue) > 30000 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
                                 }
                                 break;
                             }
                             case "CO2": {
-                                if (Number(paraValue) > 400) {
+                                if (Number(paraValue) > 400 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
 
@@ -169,7 +185,7 @@ function UpdateData() {
                                 break;
                             }
                             case "TVOC": {
-                                if (Number(paraValue) >= 0) {
+                                if (Number(paraValue) >= 0 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
 
@@ -196,6 +212,46 @@ function UpdateData() {
     }).catch((error) => {
         console.log(error);
     });
+}
+
+function SetupDates(){
+    endDate.valueAsDate = new Date();
+
+    var yesterdayDate = new Date();
+    yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+    startDate.valueAsDate = yesterdayDate;
+}
+
+function CheckDateInput(){
+    var date1 = new Date(startDate.value);
+    var date2 = new Date(endDate.value);
+    var diffDays = parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
+
+    if (diffDays < 0){
+        //alert("Error Input Dates. Can't Change Graph!");
+        startDate.style.borderWidth = endDate.style.borderWidth = "2px";
+        startDate.style.borderColor = endDate.style.borderColor = "#dc3545";
+        return false;
+    }
+    else{
+        startDate.style.borderWidth = endDate.style.borderWidth = "1px";
+        startDate.style.borderColor = endDate.style.borderColor = "#6c757d";
+        return true;
+    }
+}
+
+function ValidateDate(date){
+    date = new Date(date.split(' ')[0]);
+
+    var datestart = new Date(startDate.value);
+    var dateend = new Date(endDate.value);
+
+    if (date >= datestart && date <= dateend){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 function DrawChart(xValues, yValues) {
@@ -258,6 +314,4 @@ function DrawChart(xValues, yValues) {
             height: 500 // Set the desired height here
         }
     });
-
-
 }
