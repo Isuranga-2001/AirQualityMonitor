@@ -88,7 +88,7 @@ selectedParameter.addEventListener('change', function() {
     switch (para) {
         case "Temp": {
             paraMin = 0;
-            paraMax = 125;
+            paraMax = 80;
             document.getElementById("topic").innerHTML = "Temperature";
             break;
         }

@@ -51,7 +51,7 @@ var gaugeHumnew = new RadialGauge({
     height: 300,
     units: "Temperature (degCelcius)",
     minValue: 0,
-    maxValue: 100,
+    maxValue: 60,
     colorValueBoxRect: "#9704aa",
     colorValueBoxRectEnd: "#9704aa",
     colorValueBoxBackground: "#f1fbfc",
@@ -60,9 +60,7 @@ var gaugeHumnew = new RadialGauge({
         "0",
         "20",
         "40",
-        "60",
-        "80",
-        "100"
+        "60"
   
     ],
     minorTicks: 4,
