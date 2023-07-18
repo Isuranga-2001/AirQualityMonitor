@@ -48,7 +48,7 @@ $dashboard =  "style='background-color:#fed215;font-weight:bolder;'";
                             <!-- switch -->
                             <div class="switch-holder mt-4 mx-auto col-10 offset-1 col-md-4 offset-md-4">
                                 <div class="switch-label">
-                                    <i class="fa fa-bluetooth-b"></i><span>Connected Device</span>
+                                    <i class="fa fa-bluetooth-b"></i><span>External Connected Device</span>
                                 </div>
                                 <div class="switch-toggle">
                                     <input type="checkbox" id="bluetooth" onchange="EnableConnectedDevice(this)">

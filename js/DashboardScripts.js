@@ -99,13 +99,13 @@ selectedParameter.addEventListener('change', function() {
             break;
         }
         case "Pressure": {
-            paraMin = 30000;
+            paraMin = 90000;
             paraMax = 110000;
             document.getElementById("topic").innerHTML = "Biometric Air Pressure";
             break;
         }
         case "CO2": {
-            paraMin = 400;
+            paraMin = 300;
             paraMax = 60000;
             document.getElementById("topic").innerHTML = "CO2";
             break;
@@ -174,7 +174,7 @@ function UpdateData() {
                                 break;
                             }
                             case "CO2": {
-                                if (Number(paraValue) > 400 && ValidateDate(value.key)) {
+                                if (Number(paraValue) >= 400 && ValidateDate(value.key)) {
                                     xValues.push(value.key);
                                     yValues.push(paraValue);
 

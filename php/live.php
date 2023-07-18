@@ -21,6 +21,7 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="600">
     <title>Live</title>
     <link href="../css/live.css" rel="stylesheet" />
     <link href="../css/bootstrap.css" rel="stylesheet" />
@@ -47,7 +48,7 @@ $live =  "style='background-color:#fed215;font-weight:bolder;'";
                 <!-- switch -->
                 <div class="switch-holder col-10 offset-1 mt-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                     <div class="switch-label">
-                        <i class="fa fa-bluetooth-b"></i><span>Device</span>
+                        <i class="fa fa-bluetooth-b"></i><span>Live Server</span>
                     </div>
                     <div class="switch-toggle">
                         <input type="checkbox" id="bluetooth" onchange="EnableLiveServer(this)">

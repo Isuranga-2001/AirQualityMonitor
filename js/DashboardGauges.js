@@ -44,12 +44,12 @@ var gaugeHumnew = new RadialGauge({
   }).draw();
   // new humidty gauge
   
-  //tvoc gauge
+ 
   var gaugeTempNew = new RadialGauge({
     renderTo: 'gauge-temp',
     width: 300,
     height: 300,
-    units: "Temperature (degCelcius)",
+    units: "Temperature ('C)",
     minValue: 0,
     maxValue: 60,
     colorValueBoxRect: "#9704aa",
@@ -67,8 +67,8 @@ var gaugeHumnew = new RadialGauge({
     strokeTicks: true,
     highlights: [
         {
-            "from": 80,
-            "to": 100,
+            "from": 40,
+            "to": 60,
             "color": "rgba(255, 183, 1, 0.75)"
         }
     ],
